@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Student Account - UIU Career Portal</title>
+    <link rel="stylesheet" href="../../style.css" />
+  </head>
+  <body style="background: var(--bg-page); min-height: 100vh; display: flex; flex-direction: column;">
+    <!-- Top Global Switcher -->
+    <header class="role-quick-bar">
+      <div class="brand-badge"><span>UIU</span> Career Portal • Student Registration</div>
+      <nav class="role-nav-links">
+        <a href="../../index.html" class="role-nav-btn">🌐 Public Home</a>
+        <a href="../../student.html" class="role-nav-btn">🎓 Student Portal</a>
+        <a href="../../admin.html" class="role-nav-btn">🏛️ Admin Central</a>
+        <a href="../../employer.html" class="role-nav-btn">🏢 Employer Hub</a>
+      </nav>
+    </header>
+
+    <!-- Main Registration Split Layout -->
+    <main style="flex: 1; display: grid; grid-template-columns: 1fr 1.3fr; min-height: calc(100vh - 45px);" class="auth-split-grid">
+      <!-- Left Visual Hero Banner -->
+      <div style="background: linear-gradient(135deg, #1E3A8A 0%, #0F172A 100%); color: #FFF; padding: 48px 40px; display: flex; flex-direction: column; justify-content: space-between;" class="auth-visual-side">
+        <div>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 32px;">
+            <div class="uiu-logo-badge" style="font-size: 1.1rem; padding: 6px 12px;">UIU</div>
+            <span style="font-size: 1.1rem; font-weight: 800;">UIU CAREER PORTAL</span>
+          </div>
+          <h1 style="font-size: 2.25rem; font-weight: 800; line-height: 1.25; margin-bottom: 16px; color: #FFF;">
+            Launch Your Professional Journey at UIU
+          </h1>
+          <p style="font-size: 1rem; color: #CBD5E1; line-height: 1.6; max-width: 460px;">
+            Create your student profile with your verified university credentials to apply for on-campus placements, internships, and build an ATS-compliant resume.
+          </p>
+
+          <div style="margin-top: 32px; display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; align-items: center; gap: 12px; font-size: 0.9375rem; color: #E2E8F0;">
+              <span style="background: rgba(249, 115, 22, 0.2); color: var(--primary); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800;">✓</span>
+              Direct verification via UIU CCSA Database
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; font-size: 0.9375rem; color: #E2E8F0;">
+              <span style="background: rgba(249, 115, 22, 0.2); color: var(--primary); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800;">✓</span>
+              Automated CGPA & Credit eligibility verification
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; font-size: 0.9375rem; color: #E2E8F0;">
+              <span style="background: rgba(249, 115, 22, 0.2); color: var(--primary); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800;">✓</span>
+              Direct interview scheduling with top employers
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size: 0.8125rem; color: #94A3B8;">
+          Already registered? <a href="./login.html" style="color: var(--primary); font-weight: 700; text-decoration: none;">Sign in here</a>
+        </div>
+      </div>
+
+      <!-- Right Form Section -->
+      <div style="background: var(--bg-surface); padding: 40px 36px; display: flex; flex-direction: column; justify-content: center; overflow-y: auto;">
+        <div style="max-width: 540px; width: 100%; margin: 0 auto;">
+          <div style="margin-bottom: 24px;">
+            <span class="skill-tag-badge" style="background: var(--primary-light); color: var(--primary-dark); font-weight: 700; margin-bottom: 6px; display: inline-block;">STUDENT REGISTRATION</span>
+            <h2 class="text-h2" style="font-size: 1.75rem; margin-bottom: 4px;">Create Student Account</h2>
+            <p class="text-small">Fill in your academic details to set up your UIU placement profile.</p>
+          </div>
+
+          <form action="#registration-success" method="GET" style="display: flex; flex-direction: column; gap: 14px;">
+            <!-- Full Name -->
+            <div class="form-group">
+              <label class="form-label" for="reg-fullname">Full Name <span style="color: var(--color-danger);">*</span></label>
+              <input type="text" id="reg-fullname" name="fullname" class="form-control" placeholder="e.g. Mahfuzur Rahman Tarek" required />
+            </div>
+
+            <!-- University ID & Email Row -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="reg-uni-id">University ID <span style="color: var(--color-danger);">*</span></label>
+                <input type="text" id="reg-uni-id" name="university_id" class="form-control" placeholder="e.g. 011 211 045" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-email">Email Address <span style="color: var(--color-danger);">*</span></label>
+                <input type="email" id="reg-email" name="email" class="form-control" placeholder="e.g. mtarek2330749@bscse.uiu.ac.bd" required />
+              </div>
+            </div>
+
+            <!-- Department, Batch, CGPA Row -->
+            <div class="form-grid-3">
+              <div class="form-group">
+                <label class="form-label" for="reg-department">Department <span style="color: var(--color-danger);">*</span></label>
+                <select id="reg-department" name="department" class="form-control" required>
+                  <option value="">Select Department</option>
+                  <option value="CSE" selected>CSE</option>
+                  <option value="EEE">EEE</option>
+                  <option value="BBA">BBA</option>
+                  <option value="Civil">Civil Engineering</option>
+                  <option value="Economics">Economics</option>
+                  <option value="Data Science">Data Science</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-batch">Batch <span style="color: var(--color-danger);">*</span></label>
+                <input type="text" id="reg-batch" name="batch" class="form-control" placeholder="e.g. 211 / Fall 2021" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-cgpa">CGPA <span style="color: var(--color-danger);">*</span></label>
+                <input type="number" step="0.01" min="2.00" max="4.00" id="reg-cgpa" name="cgpa" class="form-control" placeholder="e.g. 3.84" required />
+              </div>
+            </div>
+
+            <!-- Password & Confirm Password Row -->
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="reg-password">Password <span style="color: var(--color-danger);">*</span></label>
+                <input type="password" id="reg-password" name="password" class="form-control" placeholder="Minimum 8 characters" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="reg-confirm-password">Confirm Password <span style="color: var(--color-danger);">*</span></label>
+                <input type="password" id="reg-confirm-password" name="confirm_password" class="form-control" placeholder="Repeat your password" required />
+              </div>
+            </div>
+
+            <div style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 4px;">
+              By registering, you agree to the <a href="../../index.html#terms-modal" style="color: var(--primary);">Terms & Conditions</a> and <a href="../../index.html#privacy-modal" style="color: var(--primary);">Privacy Policy</a> of UIU Career Services.
+            </div>
+
+            <button type="submit" class="btn-primary" style="justify-content: center; padding: 12px; font-size: 0.9375rem; font-weight: 700; width: 100%; margin-top: 8px;">
+              Register Account
+            </button>
+          </form>
+
+          <div style="text-align: center; margin-top: 20px; font-size: 0.875rem; color: var(--text-body);">
+            Already have an account? 
+            <a href="./login.html" style="color: var(--primary); font-weight: 700; text-decoration: none;">Login</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Registration Success Modal -->
+    <div id="registration-success" class="modal-overlay">
+      <div class="modal-dialog-box" style="text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
+        <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">Account Created Successfully!</h3>
+        <p style="font-size: 0.875rem; color: var(--text-body); line-height: 1.6; margin-bottom: 20px;">
+          Your student registration has been received. Your profile has been pre-verified with the UIU Academic Database.
+        </p>
+        <div style="display: flex; gap: 10px; justify-content: center;">
+          <a href="./login.html" class="btn-primary">Proceed to Login</a>
+          <a href="../../student.html" class="btn-outline">Open Student Portal</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

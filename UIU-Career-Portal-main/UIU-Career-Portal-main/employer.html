@@ -1,0 +1,1580 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employer Hub - CareerConnect UIU</title>
+    <meta name="description" content="Employer Hub for CareerConnect - Post jobs, recruit UIU students, manage talent pipeline." />
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      .employer-view-pane {
+        display: none;
+      }
+      #overview:target,
+      body:not(:has(:target)) #overview {
+        display: block;
+      }
+      #overview:target { display: block; }
+      #company-profile:target { display: block; }
+      #create-job:target { display: block; }
+      #create-internship:target { display: block; }
+      #applications:target { display: block; }
+      #shortlisted:target { display: block; }
+      #internships:target { display: block; }
+      #chat:target { display: block; }
+      #reports:target { display: block; }
+      #settings:target { display: block; }
+      #my-jobs:target { display: block; }
+      #applicants-frontend:target { display: block; }
+      #applicants-backend:target { display: block; }
+      #profile-shiblee:target { display: block; }
+      #profile-tasnia:target { display: block; }
+      #cv-shiblee:target { display: block; }
+      #cv-tasnia:target { display: block; }
+      #profile-rakibul:target { display: block; }
+      #cv-rakibul:target { display: block; }
+
+      :target ~ #overview {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Universal Navigation Switcher -->
+    <header class="role-quick-bar">
+      <div class="brand-badge">
+        <span>UIU</span> Career Portal
+      </div>
+      <nav class="role-nav-links">
+        <a href="./index.html" class="role-nav-btn">🌐 Public Home</a>
+        <a href="./student.html" class="role-nav-btn">🎓 Student Portal</a>
+        <a href="./admin.html" class="role-nav-btn">🏛️ Admin Central</a>
+        <a href="./employer.html" class="role-nav-btn active">🏢 Employer Hub</a>
+        <div class="role-nav-dropdown">
+          <button class="role-dropdown-btn">📑 Jump to Screen ▾</button>
+          <div class="role-dropdown-content">
+            <a href="./employer.html#overview">Page 23: Employer Overview</a>
+            <a href="./employer.html#settings">Page 24: Company Settings</a>
+            <a href="./employer.html#create-job">Page 25: Post Job</a>
+            <a href="./employer.html#create-internship">Page 26: Post Internship</a>
+            <a href="./employer.html#company-profile">Page 27: Company Profile</a>
+            <a href="./employer.html#chat">Page 28: Employer Chat</a>
+            <a href="./employer.html#reports">Page 29: Company Reports</a>
+            <a href="./employer.html#shortlisted">Page 30: Shortlisted</a>
+            <a href="./employer.html#applications">Page 31: Applications</a>
+            <a href="./employer.html#internships">Page 32: Internships</a>
+            <a href="./employer.html#my-jobs">Page 33: My Job Posts</a>
+            <a href="./employer.html#applicants-frontend">Page 34: Applicant Management</a>
+            <a href="./student.html">Go to Student Portal →</a>
+            <a href="./admin.html">Go to Admin Central →</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="portal-layout">
+      <!-- Employer Sidebar (Pages 23-32) -->
+      <aside class="portal-sidebar sidebar-theme-cream">
+        <div class="sidebar-brand">
+          <div class="uiu-logo-badge" style="background: #E0651A;">CC</div>
+          <div class="sidebar-brand-title" style="color: #0F172A;">
+            CareerConnect
+            <span style="color: #E0651A;">Enterprise Hub</span>
+          </div>
+        </div>
+
+        <ul class="sidebar-menu-list">
+          <li>
+            <a href="#overview" class="sidebar-menu-link">
+              <span>📊</span> Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="#company-profile" class="sidebar-menu-link">
+              <span>🏢</span> Company Profile
+            </a>
+          </li>
+          <li>
+            <a href="#create-job" class="sidebar-menu-link">
+              <span>💼</span> Job Management
+            </a>
+          </li>
+          <li>
+            <a href="#internships" class="sidebar-menu-link">
+              <span>🎓</span> Internship Management
+            </a>
+          </li>
+          <li>
+            <a href="#my-jobs" class="sidebar-menu-link">
+              <span>📁</span> My Job Posts &amp; Applicants
+            </a>
+          </li>
+          <li>
+            <a href="#applications" class="sidebar-menu-link">
+              <span>📥</span> Applications
+              <span class="sidebar-badge-count">156</span>
+            </a>
+          </li>
+          <li>
+            <a href="#shortlisted" class="sidebar-menu-link">
+              <span>⭐</span> Shortlisted Students
+              <span class="sidebar-badge-count" style="background:#059669;">24</span>
+            </a>
+          </li>
+          <li>
+            <a href="#chat" class="sidebar-menu-link">
+              <span>💬</span> Chat
+            </a>
+          </li>
+          <li>
+            <a href="#reports" class="sidebar-menu-link">
+              <span>📈</span> Reports
+            </a>
+          </li>
+          <li>
+            <a href="#settings" class="sidebar-menu-link">
+              <span>⚙️</span> Settings
+            </a>
+          </li>
+        </ul>
+
+        <div style="padding: 10px 0;">
+          <a href="#create-job" class="btn-primary btn-sm" style="width: 100%; justify-content: center;">+ Post Job</a>
+        </div>
+
+        <a href="./index.html" class="sidebar-footer-btn">
+          <span>🚪</span> Logout
+        </a>
+      </aside>
+
+      <!-- Employer Main Area -->
+      <main class="portal-main">
+        <header class="portal-topbar">
+          <div class="topbar-search-box">
+            <span class="search-icon-svg">🔍</span>
+            <input type="text" placeholder="Search applications, candidates, job IDs..." />
+          </div>
+          <div class="topbar-user-area">
+            <a href="#chat" class="icon-btn-badge" title="Notifications">
+              <span>🔔</span>
+              <span class="notification-dot"></span>
+            </a>
+            <div class="user-profile-pill">
+              <div class="user-avatar-circle" style="background: #E0651A;">TF</div>
+              <div>
+                <div>TechFlow HR</div>
+                <div style="font-size: 0.7rem; color: var(--text-muted); font-weight: normal;">Corporate Recruiter</div>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="portal-content-body">
+
+          <!-- SCREEN 1: EMPLOYER DASHBOARD OVERVIEW (Page 23) -->
+          <section id="overview" class="employer-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Recruitment Overview</h1>
+                <p class="page-subheading">Here's what's happening with your university recruitment today.</p>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button class="btn-outline">📅 Last 30 Days ▾</button>
+                <a href="#create-job" class="btn-primary">+ Post Job</a>
+              </div>
+            </div>
+
+            <!-- Stats (Page 23) -->
+            <div class="metrics-grid-4">
+              <div class="metric-stat-card"><div class="stat-content-box"><div class="stat-label-text">Active Jobs</div><div class="stat-huge-number">4 <span class="stat-growth-tag growth-positive">+2 this week</span></div></div></div>
+              <div class="metric-stat-card"><div class="stat-content-box"><div class="stat-label-text">Active Internships</div><div class="stat-huge-number">2</div></div></div>
+              <div class="metric-stat-card"><div class="stat-content-box"><div class="stat-label-text">Total Applications</div><div class="stat-huge-number">156 <span class="stat-growth-tag growth-positive">+12%</span></div></div></div>
+              <div class="metric-stat-card"><div class="stat-content-box"><div class="stat-label-text">Shortlisted</div><div class="stat-huge-number">24 <span style="font-size:0.875rem; color:var(--text-muted);">• 8 Interviews</span></div></div></div>
+            </div>
+
+            <!-- Trends & Opportunity Donut (Page 23) -->
+            <div class="form-grid-2">
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 8px;">Application Trends</h3>
+                <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 16px;">Monthly volume across all open positions.</p>
+                <div class="chart-bars-container">
+                  <div class="bar-column-item"><div class="bar-fill-orange" style="height: 25%;"></div><span class="bar-column-label">Jan<br />25</span></div>
+                  <div class="bar-column-item"><div class="bar-fill-orange" style="height: 35%;"></div><span class="bar-column-label">Feb<br />35</span></div>
+                  <div class="bar-column-item"><div class="bar-fill-orange" style="height: 48%;"></div><span class="bar-column-label">Mar<br />48</span></div>
+                  <div class="bar-column-item"><div class="bar-fill-orange" style="height: 70%;"></div><span class="bar-column-label">Apr<br />70</span></div>
+                  <div class="bar-column-item"><div class="bar-fill-orange" style="height: 85%;"></div><span class="bar-column-label">May<br />85</span></div>
+                  <div class="bar-column-item"><div class="bar-fill-orange" style="height: 100%;"></div><span class="bar-column-label">Jun<br /><strong>156</strong></span></div>
+                </div>
+              </div>
+
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 8px;">Opportunity Distribution</h3>
+                <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 16px;">Breakdown of applicant distribution.</p>
+                <div style="display: flex; align-items: center; justify-content: space-around;">
+                  <svg class="donut-chart-svg" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" class="donut-circle-bg"></circle>
+                    <circle cx="50" cy="50" r="40" class="donut-circle-val1" style="stroke-dasharray: 300 400;"></circle>
+                    <circle cx="50" cy="50" r="40" class="donut-circle-val2" style="stroke-dasharray: 100 400;"></circle>
+                  </svg>
+                  <div style="font-size: 0.875rem; line-height: 2;">
+                    <div><span style="color:var(--primary);">●</span> Full-time Jobs: <strong>75%</strong></div>
+                    <div><span style="color:#0284C7;">●</span> Internships: <strong>25%</strong></div>
+                    <div style="margin-top: 8px; font-weight: 700; color: var(--text-main);">Total: 156 Candidates</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Funnel & Recent Activity (Page 23) -->
+            <div class="form-grid-2">
+              <div class="portal-card">
+                <div class="portal-card-header">
+                  <h3 class="card-title-h3">Recent Activity</h3>
+                  <a href="#applications" class="section-link-all">View All</a>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 14px;">
+                  <div style="display: flex; justify-content: space-between; font-size: 0.875rem; border-bottom: 1px solid var(--border-light); padding-bottom: 10px;">
+                    <div>
+                      <strong>Sarah Jenkins</strong> applied for Frontend Developer.
+                      <div style="font-size: 0.75rem; color: var(--text-muted);">2 hours ago</div>
+                    </div>
+                    <a href="#chat" class="btn-action-view">Review</a>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.875rem; border-bottom: 1px solid var(--border-light); padding-bottom: 10px;">
+                    <div>
+                      <strong>Interview scheduled</strong> with Michael Chen.
+                      <div style="font-size: 0.75rem; color: #059669;">Tomorrow, 10:00 AM</div>
+                    </div>
+                    <a href="#shortlisted" class="btn-action-view">View</a>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 0.875rem;">
+                    <div>
+                      <strong>David Ross</strong> accepted the offer for Marketing Intern.
+                      <div style="font-size: 0.75rem; color: var(--text-muted);">Yesterday, 4:30 PM</div>
+                    </div>
+                    <span class="status-pill status-verified">Accepted</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Hiring Pipeline Funnel (Page 23) -->
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 16px;">Hiring Pipeline</h3>
+                <div class="pipeline-steps-list">
+                  <div class="pipeline-step-item">
+                    <div class="pipeline-step-name">Applied</div>
+                    <div class="pipeline-step-bar-wrap"><div class="pipeline-step-bar-inner" style="width: 100%;"></div></div>
+                    <div class="pipeline-step-count">156</div>
+                  </div>
+                  <div class="pipeline-step-item">
+                    <div class="pipeline-step-name">Screened</div>
+                    <div class="pipeline-step-bar-wrap"><div class="pipeline-step-bar-inner" style="width: 65%; background:#D97706;"></div></div>
+                    <div class="pipeline-step-count">84</div>
+                  </div>
+                  <div class="pipeline-step-item">
+                    <div class="pipeline-step-name">Interviewing</div>
+                    <div class="pipeline-step-bar-wrap"><div class="pipeline-step-bar-inner" style="width: 30%; background:#0284C7;"></div></div>
+                    <div class="pipeline-step-count">24</div>
+                  </div>
+                  <div class="pipeline-step-item">
+                    <div class="pipeline-step-name">Offered</div>
+                    <div class="pipeline-step-bar-wrap"><div class="pipeline-step-bar-inner" style="width: 18%; background:#7C3AED;"></div></div>
+                    <div class="pipeline-step-count">15</div>
+                  </div>
+                  <div class="pipeline-step-item">
+                    <div class="pipeline-step-name">Hired</div>
+                    <div class="pipeline-step-bar-wrap"><div class="pipeline-step-bar-inner" style="width: 14%; background:#059669;"></div></div>
+                    <div class="pipeline-step-count">12</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 2: POST NEW JOB (Page 25) -->
+          <section id="create-job" class="employer-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Create New Job Posting</h1>
+                <p class="page-subheading">Publish a full-time or contract role to UIU graduates.</p>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button class="btn-outline">Save Draft</button>
+                <a href="#post-success-modal" class="btn-primary">🚀 Publish Job</a>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 16px;">📝 Basic Information</h3>
+                <div class="form-group">
+                  <label class="form-label">Job Title *</label>
+                  <input type="text" class="form-control" placeholder="e.g. Senior Software Engineer" value="Frontend Developer" />
+                </div>
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label">Department</label>
+                    <select class="form-control">
+                      <option>CSE (Computer Science)</option>
+                      <option>EEE (Electrical)</option>
+                      <option>BBA (Business)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Vacancy Count</label>
+                    <input type="number" class="form-control" value="2" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Job Requirements (Markdown Supported) *</label>
+                  <textarea class="form-control" style="height: 140px;">- 3+ years experience with modern React and TypeScript.
+- Strong knowledge of responsive CSS layouts and state management.
+- Experience with REST and GraphQL APIs.</textarea>
+                </div>
+              </div>
+
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 16px;">📍 Location & Setup</h3>
+                <div class="form-group">
+                  <label class="form-label">Workplace Type</label>
+                  <div style="display: flex; gap: 8px;">
+                    <label class="btn-outline" style="flex:1; text-align:center;"><input type="radio" name="worktype" /> On-site</label>
+                    <label class="btn-primary" style="flex:1; text-align:center;"><input type="radio" name="worktype" checked /> Hybrid</label>
+                    <label class="btn-outline" style="flex:1; text-align:center;"><input type="radio" name="worktype" /> Remote</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Salary Range (Optional)</label>
+                  <div style="display: flex; gap: 8px;">
+                    <input type="text" class="form-control" placeholder="Min: $500" value="$600" />
+                    <input type="text" class="form-control" placeholder="Max: $900" value="$850" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Application Deadline</label>
+                  <input type="date" class="form-control" value="2026-10-30" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Required Skills</label>
+                  <div class="skills-tags-container">
+                    <span class="skill-tag-badge skill-tag-active">React.js ✕</span>
+                    <span class="skill-tag-badge skill-tag-active">TypeScript ✕</span>
+                    <span class="skill-tag-badge">+ Add Skill</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 3: POST NEW INTERNSHIP (Page 26) -->
+          <section id="create-internship" class="employer-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Create Internship Program</h1>
+                <p class="page-subheading">Draft a new internship opportunity for university students.</p>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button class="btn-outline">Save Draft</button>
+                <a href="#post-success-modal" class="btn-primary">🚀 Publish Internship</a>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 16px;">🎓 Basic Details</h3>
+                <div class="form-group">
+                  <label class="form-label">Internship Title *</label>
+                  <input type="text" class="form-control" value="Summer Software Engineering Intern" />
+                </div>
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label">Duration *</label>
+                    <select class="form-control">
+                      <option>3 Months (Summer)</option>
+                      <option>6 Months (Fall/Winter)</option>
+                      <option>4 Months (Spring)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Monthly Stipend *</label>
+                    <input type="text" class="form-control" value="$300 / month" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Key Responsibilities *</label>
+                  <textarea class="form-control" style="height: 120px;">Assist in developing frontend UI modules, participate in daily standups, and write test coverage.</textarea>
+                </div>
+              </div>
+
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 16px;">🎯 Eligibility & Timeline</h3>
+                <div class="form-group">
+                  <label class="form-label">Target Semesters *</label>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+                    <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" /> Semester 5</label>
+                    <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" /> Semester 6</label>
+                    <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" checked /> Semester 7</label>
+                    <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" checked /> Semester 8</label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Minimum CGPA (Optional)</label>
+                  <input type="text" class="form-control" value="3.00 / 4.00" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Application Deadline</label>
+                  <input type="date" class="form-control" value="2026-09-15" />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 4: COMPANY PROFILE (Page 27) -->
+          <section id="company-profile" class="employer-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Company Profile</h1>
+                <p class="page-subheading">Manage your organization's public details and recruitment brand.</p>
+              </div>
+              <button class="btn-primary">💾 Save Changes</button>
+            </div>
+
+            <div class="portal-card">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <div>
+                  <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 16px;">
+                    <div class="user-avatar-circle" style="width: 64px; height: 64px; font-size: 1.8rem; background: #0284C7;">TF</div>
+                    <div>
+                      <h2 style="font-size: 1.5rem; font-weight: 800;">TechFlow Solutions</h2>
+                      <p style="color: var(--text-muted); font-size: 0.875rem;">🌐 www.techflow.io • 👥 250 - 500 Employees • Founded 2014</p>
+                    </div>
+                  </div>
+                  <p style="line-height: 1.7; color: var(--text-body); margin-bottom: 16px;">
+                    TechFlow Solutions is a premier software development firm specializing in cloud-native applications and enterprise architecture. Founded with the mission to accelerate digital transformation, we partner with industry leaders to build scalable, resilient, and forward-thinking digital products.
+                  </p>
+                  <div class="skills-tags-container">
+                    <span class="skill-tag-badge">Cloud Native</span>
+                    <span class="skill-tag-badge">FinTech</span>
+                    <span class="skill-tag-badge">Enterprise Architecture</span>
+                    <span class="skill-tag-badge">AI Integration</span>
+                  </div>
+                </div>
+
+                <div style="background: #FAF8F5; padding: 20px; border-radius: var(--radius-md);">
+                  <h3 style="font-size: 1rem; font-weight: 800; margin-bottom: 12px;">Primary Contact & Location</h3>
+                  <div style="font-size: 0.875rem; line-height: 1.8; margin-bottom: 16px;">
+                    <div><strong>Sarah Jenkins</strong> — Director of University Recruiting</div>
+                    <div>📧 s.jenkins@techflow.io • 📞 +1 (415) 555-0198</div>
+                    <div style="margin-top: 8px;">🏢 <strong>TechFlow Tower</strong>, Innovation Drive, San Francisco, CA</div>
+                  </div>
+                  <div style="background: #FFF; padding: 12px; border-radius: var(--radius-sm); border: 1px solid var(--border-color);">
+                    <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 0.8125rem;">
+                      <span>Profile Strength: Excellent</span>
+                      <span style="color: #059669;">85%</span>
+                    </div>
+                    <div class="hbar-track" style="margin-top: 6px;"><div class="hbar-fill" style="width: 85%; background:#059669;"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 5: APPLICATIONS (Page 31) -->
+          <section id="applications" class="employer-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Candidate Applications</h1>
+                <p class="page-subheading">Manage and review student applications for jobs and internships.</p>
+              </div>
+              <button class="btn-outline">📥 Export List</button>
+            </div>
+
+            <div class="portal-card">
+              <div class="data-table-wrapper">
+                <table class="portal-table">
+                  <thead>
+                    <tr>
+                      <th>Student</th>
+                      <th>University ID</th>
+                      <th>CGPA & Skills</th>
+                      <th>Position Applied</th>
+                      <th>Applied Date</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Alex Mercer</strong><br />Computer Science</td>
+                      <td>S1029384</td>
+                      <td><strong>3.8 / 4.0</strong><br /><span class="skill-tag-badge">React</span> <span class="skill-tag-badge">Node.js</span></td>
+                      <td>Frontend Dev Intern</td>
+                      <td>Oct 24, 2023</td>
+                      <td><span class="status-pill status-pending">Pending</span></td>
+                      <td><a href="#chat" class="btn-action-view">Interview</a></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Samantha Jones</strong><br />Business Admin</td>
+                      <td>S9982311</td>
+                      <td><strong>3.9 / 4.0</strong><br /><span class="skill-tag-badge">Excel</span> <span class="skill-tag-badge">Data Analysis</span></td>
+                      <td>Data Analyst (Full-time)</td>
+                      <td>Oct 22, 2023</td>
+                      <td><span class="status-pill status-shortlisted">Shortlisted</span></td>
+                      <td><a href="#chat" class="btn-action-view">Interview</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 6: SHORTLISTED STUDENTS (Page 30) -->
+          <section id="shortlisted" class="employer-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Shortlisted Students</h1>
+                <p class="page-subheading">Manage and track candidates selected for interviews.</p>
+              </div>
+              <button class="btn-primary">📥 Export Shortlist</button>
+            </div>
+
+            <div class="metrics-grid-3" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 24px;">
+              <div class="metric-stat-card"><div class="stat-content-box"><div class="stat-label-text">Total Shortlisted</div><div class="stat-huge-number">124</div></div></div>
+              <div class="metric-stat-card"><div class="stat-content-box"><div class="stat-label-text">Interviews Scheduled</div><div class="stat-huge-number">48 <span style="font-size:0.875rem;">this week</span></div></div></div>
+              <div class="metric-stat-card"><div class="stat-content-box"><div class="stat-label-text">Pending Offers</div><div class="stat-huge-number">12</div></div></div>
+            </div>
+
+            <div class="portal-card">
+              <div class="data-table-wrapper">
+                <table class="portal-table">
+                  <thead>
+                    <tr>
+                      <th>Student</th>
+                      <th>Position</th>
+                      <th>Interview Date</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Marcus Johnson</strong><br />Computer Science, Yr 3</td>
+                      <td>Frontend Developer Intern</td>
+                      <td>Oct 24, 2023 • 10:00 AM</td>
+                      <td><span class="status-pill status-applied">Scheduled</span></td>
+                      <td><a href="#chat" class="btn-action-view">Chat</a></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Sarah Chen</strong><br />Data Science, Yr 4</td>
+                      <td>Data Analyst</td>
+                      <td>Oct 22, 2023 • 2:30 PM</td>
+                      <td><span class="status-pill status-verified">Completed</span></td>
+                      <td><a href="#chat" class="btn-action-view">Offer Letter</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Shortlisted Candidates — Card View (per-job, from Applicant Management) -->
+            <div style="margin-top: 28px;">
+              <div class="page-title-row" style="margin-bottom: 14px;">
+                <div>
+                  <h3 class="card-title-h3">Shortlisted Candidates</h3>
+                  <p class="text-small">8 candidates shortlisted across your active job posts.</p>
+                </div>
+              </div>
+
+              <div class="am-shortlist-grid">
+                <div class="am-applicant-card">
+                  <div class="am-applicant-card-head">
+                    <div class="am-applicant-identity">
+                      <div class="am-applicant-avatar">SA</div>
+                      <div>
+                        <div class="am-applicant-name">Shiblee Amin</div>
+                        <div class="am-applicant-meta">CSE • Graduation 2028</div>
+                      </div>
+                    </div>
+                    <span class="am-badge-shortlisted">Shortlisted ✓</span>
+                  </div>
+                  <div class="am-applicant-detail-row">
+                    <span><strong>Applied for:</strong> Frontend Developer Intern</span>
+                    <span><strong>Skills:</strong> Java, Python, C, SQL</span>
+                    <span><strong>Applied:</strong> September 8, 2026</span>
+                  </div>
+                  <div class="am-applicant-summary">
+                    <strong>Candidate Summary</strong>
+                    CSE student with strong programming fundamentals and experience in Java, Python and SQL.
+                  </div>
+                  <div class="am-applicant-footer">
+                    <a href="#profile-shiblee" class="btn-outline btn-sm">View Profile</a>
+                    <a href="#cv-shiblee" class="btn-outline btn-sm">View CV</a>
+                    <a href="#shortlisted" class="btn-outline btn-sm" style="color: var(--color-danger);">Remove from Shortlist</a>
+                  </div>
+                </div>
+
+                <div class="am-applicant-card">
+                  <div class="am-applicant-card-head">
+                    <div class="am-applicant-identity">
+                      <div class="am-applicant-avatar">NF</div>
+                      <div>
+                        <div class="am-applicant-name">Nusrat Fariha</div>
+                        <div class="am-applicant-meta">CSE • Graduation 2027</div>
+                      </div>
+                    </div>
+                    <span class="am-badge-shortlisted">Shortlisted ✓</span>
+                  </div>
+                  <div class="am-applicant-detail-row">
+                    <span><strong>Applied for:</strong> Backend Developer Intern</span>
+                    <span><strong>Skills:</strong> Node.js, Express, MongoDB</span>
+                    <span><strong>Applied:</strong> September 6, 2026</span>
+                  </div>
+                  <div class="am-applicant-summary">
+                    <strong>Candidate Summary</strong>
+                    CSE student with practical backend experience building REST APIs and authentication services.
+                  </div>
+                  <div class="am-applicant-footer">
+                    <a href="#applicants-backend" class="btn-outline btn-sm">View Profile</a>
+                    <a href="#applicants-backend" class="btn-outline btn-sm">View CV</a>
+                    <a href="#shortlisted" class="btn-outline btn-sm" style="color: var(--color-danger);">Remove from Shortlist</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 7: INTERNSHIP MANAGEMENT (Page 32) -->
+          <section id="internships" class="employer-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Internship Management</h1>
+                <p class="page-subheading">Manage and track all active internship postings and applicant status.</p>
+              </div>
+              <a href="#create-internship" class="btn-primary">+ Post Internship</a>
+            </div>
+
+            <div class="portal-card">
+              <div class="data-table-wrapper">
+                <table class="portal-table">
+                  <thead>
+                    <tr>
+                      <th>Internship Title</th>
+                      <th>Duration</th>
+                      <th>Applied</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Software Engineering Intern - Frontend</strong><br />Tech Dept • Hybrid</td>
+                      <td>3 Months (Summer)</td>
+                      <td><strong>124</strong> (+12 new)</td>
+                      <td><span class="status-pill status-verified">Active</span></td>
+                      <td><a href="#applications" class="btn-action-view">Review</a></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Data Science Analyst Intern</strong><br />Analytics • Remote</td>
+                      <td>6 Months (Fall/Winter)</td>
+                      <td><strong>89</strong></td>
+                      <td><span class="status-pill status-verified">Active</span></td>
+                      <td><a href="#applications" class="btn-action-view">Review</a></td>
+                    </tr>
+                    <tr>
+                      <td><strong>UX/UI Design Co-op</strong><br />Design • On-site</td>
+                      <td>4 Months (Spring)</td>
+                      <td><strong>215</strong> (+45 new)</td>
+                      <td><span class="status-pill status-review">Reviewing</span></td>
+                      <td><a href="#applications" class="btn-action-view">Review</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 8: CHAT (Page 28) -->
+          <section id="chat" class="employer-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Recruiter Messages</h1>
+                <p class="page-subheading">Direct communication with student applicants.</p>
+              </div>
+            </div>
+
+            <div class="chat-app-container">
+              <div class="chat-contacts-panel">
+                <div class="chat-contacts-header">Candidate Messages</div>
+                <div class="chat-threads-list">
+                  <div class="chat-thread-item active">
+                    <div class="chat-avatar-sq" style="background: #D1FAE5; color: #059669;">SJ</div>
+                    <div class="chat-preview-text">
+                      <div class="chat-preview-title">
+                        <span>Sarah Jenkins</span>
+                        <span style="font-size: 0.75rem; color: var(--text-light);">10:42 AM</span>
+                      </div>
+                      <div class="chat-preview-snippet">I've attached my updated portfolio...</div>
+                    </div>
+                  </div>
+                  <div class="chat-thread-item">
+                    <div class="chat-avatar-sq">MC</div>
+                    <div class="chat-preview-text">
+                      <div class="chat-preview-title">
+                        <span>Marcus Chen</span>
+                        <span style="font-size: 0.75rem; color: var(--text-light);">Yesterday</span>
+                      </div>
+                      <div class="chat-preview-snippet">Are there any updates on the final...</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="chat-active-window">
+                <div class="chat-active-header">
+                  <div>
+                    <h3 style="font-size: 1rem; font-weight: 800;">Sarah Jenkins</h3>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">Software Engineering Intern Applicant • 4th Year CSE</p>
+                  </div>
+                  <button class="btn-outline btn-sm">📅 Set Call Time</button>
+                </div>
+
+                <div class="chat-messages-scroll">
+                  <div class="chat-bubble chat-bubble-received">
+                    Hi there! Thanks for getting back to me so quickly regarding the SWE internship role.
+                    <div class="chat-timestamp">10:30 AM</div>
+                  </div>
+                  <div class="chat-bubble chat-bubble-sent">
+                    You're welcome, Sarah. We were really impressed by your initial technical screen. Could you send over a link to your latest GitHub projects or attach a portfolio?
+                    <div class="chat-timestamp">10:35 AM</div>
+                  </div>
+                  <div class="chat-bubble chat-bubble-received">
+                    📄 <strong>S_Jenkins_Portfolio_2024.pdf</strong> (2.4 MB)<br />
+                    I've attached my updated portfolio as requested. It includes the React Native project we discussed.
+                    <div class="chat-timestamp">10:42 AM</div>
+                  </div>
+                </div>
+
+                <form class="chat-input-bar" action="#chat">
+                  <input type="text" placeholder="Type a message..." required />
+                  <button type="submit" class="btn-primary btn-sm">Send</button>
+                </form>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 9: REPORTS (Page 29) -->
+          <section id="reports" class="employer-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Company Reports</h1>
+                <p class="page-subheading">Comprehensive overview of your hiring pipeline and engagement metrics.</p>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn-outline btn-sm">🖨️ Print Report</button>
+                <button class="btn-outline btn-sm">Export Excel</button>
+                <button class="btn-primary btn-sm">Generate PDF</button>
+              </div>
+            </div>
+
+            <div class="metrics-grid-4">
+              <div class="metric-stat-card"><div class="stat-content-box"><div class="stat-label-text">Jobs Posted</div><div class="stat-huge-number">42</div></div></div>
+              <div class="metric-stat-card"><div class="stat-content-box"><div class="stat-label-text">Internship Posts</div><div class="stat-huge-number">18</div></div></div>
+              <div class="metric-stat-card"><div class="stat-content-box"><div class="stat-label-text">Total Applications</div><div class="stat-huge-number">1,204</div></div></div>
+              <div class="metric-stat-card"><div class="stat-content-box"><div class="stat-label-text">Total Hires (YTD)</div><div class="stat-huge-number">86</div></div></div>
+            </div>
+
+            <div class="portal-card">
+              <h3 class="card-title-h3" style="margin-bottom: 16px;">Top Performing Roles</h3>
+              <div style="font-size: 0.875rem; line-height: 2;">
+                <div style="display:flex; justify-content:space-between;"><span>Software Engineer (342 Applications)</span><strong>12 Hires</strong></div>
+                <div style="display:flex; justify-content:space-between;"><span>Data Analyst Intern (285 Applications)</span><strong>5 Hires</strong></div>
+                <div style="display:flex; justify-content:space-between;"><span>Product Manager (156 Applications)</span><strong>3 Hires</strong></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 10: SETTINGS (Page 24) -->
+          <section id="settings" class="employer-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Company Settings</h1>
+                <p class="page-subheading">Manage your organization's profile, preferences, and security.</p>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 16px;">Company Details</h3>
+                <div class="form-group">
+                  <label class="form-label">Company Name</label>
+                  <input type="text" class="form-control" value="Acme Corp Enterprise" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Industry</label>
+                  <input type="text" class="form-control" value="Technology / Software" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Company Size</label>
+                  <select class="form-control">
+                    <option>500 - 1,000 employees</option>
+                    <option>100 - 500 employees</option>
+                  </select>
+                </div>
+                <button class="btn-primary">Save Changes</button>
+              </div>
+
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 16px;">Security & 2FA</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                  <div>
+                    <strong>Two-Factor Authentication (2FA)</strong>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">Extra security layer on login.</div>
+                  </div>
+                  <button class="btn-outline btn-sm" style="color: #059669;">Enable 2FA</button>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Current Password</label>
+                  <input type="password" class="form-control" value="••••••••••" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">New Password</label>
+                  <input type="password" class="form-control" placeholder="Enter new password" />
+                </div>
+                <button class="btn-primary">Update Password</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================================================================
+               SCREEN 11: MY JOB POSTS (Page 33)
+               Entry point into the Applicant Management & Shortlisting workflow.
+               Company Login → Company Dashboard → My Jobs → Select Job →
+               View Applicants → Review Candidates → View Profile → View CV →
+               Shortlist → Under Review → Interview → Selected/Rejected
+               ================================================================== -->
+          <section id="my-jobs" class="employer-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">My Job Posts</h1>
+                <p class="page-subheading">Select a job post to review, shortlist, and manage its applicants.</p>
+              </div>
+              <a href="#create-job" class="btn-primary">+ Post New Job</a>
+            </div>
+
+            <div class="am-jobpost-grid">
+              <!-- Job Post 1 -->
+              <div class="portal-card">
+                <div class="am-jobpost-card-top">
+                  <div>
+                    <h3 class="card-title-h3">Frontend Developer Intern</h3>
+                    <div class="am-jobpost-company">ABC Technologies • Posted Aug 12, 2026</div>
+                  </div>
+                  <span class="status-pill status-active">Active</span>
+                </div>
+                <div class="am-jobpost-stats-row">
+                  <div><div class="am-jobpost-stat-num">24</div><div class="am-jobpost-stat-label">Applicants</div></div>
+                  <div><div class="am-jobpost-stat-num">8</div><div class="am-jobpost-stat-label">Shortlisted</div></div>
+                  <div><div class="am-jobpost-stat-num">3</div><div class="am-jobpost-stat-label">Interviews</div></div>
+                </div>
+                <a href="#applicants-frontend" class="btn-primary" style="width: 100%; justify-content: center;">View Applicants</a>
+              </div>
+
+              <!-- Job Post 2 -->
+              <div class="portal-card">
+                <div class="am-jobpost-card-top">
+                  <div>
+                    <h3 class="card-title-h3">Backend Developer Intern</h3>
+                    <div class="am-jobpost-company">ABC Technologies • Posted Aug 20, 2026</div>
+                  </div>
+                  <span class="status-pill status-active">Active</span>
+                </div>
+                <div class="am-jobpost-stats-row">
+                  <div><div class="am-jobpost-stat-num">17</div><div class="am-jobpost-stat-label">Applicants</div></div>
+                  <div><div class="am-jobpost-stat-num">5</div><div class="am-jobpost-stat-label">Shortlisted</div></div>
+                  <div><div class="am-jobpost-stat-num">1</div><div class="am-jobpost-stat-label">Interviews</div></div>
+                </div>
+                <a href="#applicants-backend" class="btn-primary" style="width: 100%; justify-content: center;">View Applicants</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================================================================
+               SCREEN 12: APPLICANT MANAGEMENT — Frontend Developer Intern (Page 34)
+               Company → Job → Application → Student
+               ================================================================== -->
+          <section id="applicants-frontend" class="employer-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#my-jobs">← Back to My Job Posts</a>
+            </div>
+
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Frontend Developer Intern</h1>
+                <p class="page-subheading">ABC Technologies • <strong>24 Applicants</strong></p>
+              </div>
+              <a href="#shortlisted" class="btn-outline">⭐ View Shortlisted Candidates</a>
+            </div>
+
+            <!-- Recruitment Pipeline Tracker -->
+            <div class="portal-card">
+              <h3 class="card-title-h3" style="margin-bottom: 4px;">Recruitment Pipeline</h3>
+              <p class="text-small" style="margin-bottom: 4px;">Overview of where candidates currently stand for this job post.</p>
+              <div class="am-pipeline-track">
+                <div class="am-pipeline-node completed">
+                  <div class="am-pipeline-dot">24</div>
+                  <div class="am-pipeline-label">Applied</div>
+                </div>
+                <div class="am-pipeline-node completed">
+                  <div class="am-pipeline-dot">14</div>
+                  <div class="am-pipeline-label">Under Review</div>
+                </div>
+                <div class="am-pipeline-node active">
+                  <div class="am-pipeline-dot">8</div>
+                  <div class="am-pipeline-label">Shortlisted</div>
+                </div>
+                <div class="am-pipeline-node">
+                  <div class="am-pipeline-dot">3</div>
+                  <div class="am-pipeline-label">Interview</div>
+                </div>
+                <div class="am-pipeline-node">
+                  <div class="am-pipeline-dot">2</div>
+                  <div class="am-pipeline-label">Selected</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Search / Filter / Sort Toolbar (visual only — to be wired to backend later) -->
+            <div class="portal-card">
+              <div class="am-filter-toolbar">
+                <div class="topbar-search-box" style="max-width: 320px;">
+                  <span class="search-icon-svg">🔍</span>
+                  <input type="text" placeholder="Search applicants by name or skill..." />
+                </div>
+                <div class="am-filter-chip-group">
+                  <a href="#applicants-frontend" class="am-filter-chip active">All Applicants</a>
+                  <a href="#applicants-frontend" class="am-filter-chip">Under Review</a>
+                  <a href="#applicants-frontend" class="am-filter-chip">Shortlisted</a>
+                  <a href="#applicants-frontend" class="am-filter-chip">Interview</a>
+                  <a href="#applicants-frontend" class="am-filter-chip">Selected</a>
+                  <a href="#applicants-frontend" class="am-filter-chip">Rejected</a>
+                </div>
+                <div class="am-sort-group">
+                  Sort by:
+                  <select class="form-control" style="width: auto; padding: 6px 10px;">
+                    <option>Newest Applications</option>
+                    <option>Oldest Applications</option>
+                    <option>Name</option>
+                    <option>Graduation Year</option>
+                    <option>Most Relevant</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Applicant Cards -->
+            <div class="am-applicant-list">
+
+              <!-- Applicant 01 -->
+              <div class="am-applicant-card">
+                <div class="am-applicant-card-head">
+                  <div class="am-applicant-identity">
+                    <div class="am-applicant-avatar">SA</div>
+                    <div>
+                      <div class="am-applicant-name">Shiblee Amin</div>
+                      <div class="am-applicant-meta">CSE • Graduation 2028</div>
+                    </div>
+                  </div>
+                  <span class="status-pill status-shortlisted">Shortlisted</span>
+                </div>
+
+                <div class="am-applicant-detail-row">
+                  <span><strong>Skills:</strong> Java, Python, C, SQL</span>
+                  <span><strong>Projects:</strong> ERP System, Traffic Control System</span>
+                  <span><strong>Experience:</strong> 1 relevant project/internship</span>
+                  <span><strong>Applied:</strong> September 8, 2026</span>
+                </div>
+
+                <div class="am-applicant-summary">
+                  <strong>Candidate Summary</strong>
+                  CSE student with strong programming fundamentals and experience in Java, Python and SQL. Has completed multiple software development projects.
+                </div>
+
+                <div class="am-applicant-footer">
+                  <a href="#profile-shiblee" class="btn-outline btn-sm">View Profile</a>
+                  <a href="#cv-shiblee" class="btn-outline btn-sm">View CV</a>
+                  <a href="#applicants-frontend" class="btn-primary btn-sm">Change Status</a>
+                </div>
+              </div>
+
+              <!-- Applicant 02 -->
+              <div class="am-applicant-card">
+                <div class="am-applicant-card-head">
+                  <div class="am-applicant-identity">
+                    <div class="am-applicant-avatar">TR</div>
+                    <div>
+                      <div class="am-applicant-name">Tasnia Rahman</div>
+                      <div class="am-applicant-meta">CSE • Graduation 2027</div>
+                    </div>
+                  </div>
+                  <span class="status-pill status-review">Under Review</span>
+                </div>
+
+                <div class="am-applicant-detail-row">
+                  <span><strong>Skills:</strong> React, JavaScript, HTML, CSS</span>
+                  <span><strong>Projects:</strong> Student Portal UI, E-commerce Storefront</span>
+                  <span><strong>Experience:</strong> 6-month frontend internship</span>
+                  <span><strong>Applied:</strong> September 5, 2026</span>
+                </div>
+
+                <div class="am-applicant-summary">
+                  <strong>Candidate Summary</strong>
+                  CSE student focused on frontend engineering with hands-on React experience and a completed internship building responsive web interfaces.
+                </div>
+
+                <div class="am-applicant-footer">
+                  <a href="#profile-tasnia" class="btn-outline btn-sm">View Profile</a>
+                  <a href="#cv-tasnia" class="btn-outline btn-sm">View CV</a>
+                  <a href="#applicants-frontend" class="btn-primary btn-sm">Shortlist</a>
+                </div>
+              </div>
+
+              <!-- Applicant 03 -->
+              <div class="am-applicant-card">
+                <div class="am-applicant-card-head">
+                  <div class="am-applicant-identity">
+                    <div class="am-applicant-avatar">RH</div>
+                    <div>
+                      <div class="am-applicant-name">Rakibul Hasan</div>
+                      <div class="am-applicant-meta">CSE • Graduation 2027</div>
+                    </div>
+                  </div>
+                  <span class="status-pill status-interview">Interview</span>
+                </div>
+
+                <div class="am-applicant-detail-row">
+                  <span><strong>Skills:</strong> JavaScript, Vue.js, Tailwind CSS</span>
+                  <span><strong>Projects:</strong> Career Portal Clone, Portfolio Site Generator</span>
+                  <span><strong>Experience:</strong> Freelance frontend work</span>
+                  <span><strong>Applied:</strong> September 2, 2026</span>
+                </div>
+
+                <div class="am-applicant-summary">
+                  <strong>Candidate Summary</strong>
+                  CSE student with freelance frontend development experience and a solid portfolio of component-driven web projects.
+                </div>
+
+                <div class="am-applicant-footer">
+                  <a href="#profile-rakibul" class="btn-outline btn-sm">View Profile</a>
+                  <a href="#cv-rakibul" class="btn-outline btn-sm">View CV</a>
+                  <a href="#applicants-frontend" class="btn-primary btn-sm">Move to Selected</a>
+                </div>
+              </div>
+
+              <!-- Applicant 04 -->
+              <div class="am-applicant-card">
+                <div class="am-applicant-card-head">
+                  <div class="am-applicant-identity">
+                    <div class="am-applicant-avatar">MI</div>
+                    <div>
+                      <div class="am-applicant-name">Mahin Islam</div>
+                      <div class="am-applicant-meta">CSE • Graduation 2026</div>
+                    </div>
+                  </div>
+                  <span class="status-pill status-applied">Applied</span>
+                </div>
+
+                <div class="am-applicant-detail-row">
+                  <span><strong>Skills:</strong> HTML, CSS, jQuery</span>
+                  <span><strong>Projects:</strong> Personal Blog Theme</span>
+                  <span><strong>Experience:</strong> Coursework only</span>
+                  <span><strong>Applied:</strong> September 8, 2026</span>
+                </div>
+
+                <div class="am-applicant-summary">
+                  <strong>Candidate Summary</strong>
+                  CSE student early in frontend development with foundational HTML/CSS coursework projects.
+                </div>
+
+                <div class="am-applicant-footer">
+                  <a href="#applicants-frontend" class="btn-outline btn-sm">View Profile</a>
+                  <a href="#applicants-frontend" class="btn-outline btn-sm">View CV</a>
+                  <a href="#applicants-frontend" class="btn-primary btn-sm">Move to Review</a>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- ==================================================================
+               SCREEN 13: APPLICANT MANAGEMENT — Backend Developer Intern
+               Demonstrates that applicants are clearly separated per job post.
+               ================================================================== -->
+          <section id="applicants-backend" class="employer-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#my-jobs">← Back to My Job Posts</a>
+            </div>
+
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Backend Developer Intern</h1>
+                <p class="page-subheading">ABC Technologies • <strong>17 Applicants</strong></p>
+              </div>
+              <a href="#shortlisted" class="btn-outline">⭐ View Shortlisted Candidates</a>
+            </div>
+
+            <div class="portal-card">
+              <div class="am-pipeline-track">
+                <div class="am-pipeline-node completed"><div class="am-pipeline-dot">17</div><div class="am-pipeline-label">Applied</div></div>
+                <div class="am-pipeline-node completed"><div class="am-pipeline-dot">10</div><div class="am-pipeline-label">Under Review</div></div>
+                <div class="am-pipeline-node active"><div class="am-pipeline-dot">5</div><div class="am-pipeline-label">Shortlisted</div></div>
+                <div class="am-pipeline-node"><div class="am-pipeline-dot">1</div><div class="am-pipeline-label">Interview</div></div>
+                <div class="am-pipeline-node"><div class="am-pipeline-dot">0</div><div class="am-pipeline-label">Selected</div></div>
+              </div>
+            </div>
+
+            <div class="am-applicant-list">
+              <div class="am-applicant-card">
+                <div class="am-applicant-card-head">
+                  <div class="am-applicant-identity">
+                    <div class="am-applicant-avatar">NF</div>
+                    <div>
+                      <div class="am-applicant-name">Nusrat Fariha</div>
+                      <div class="am-applicant-meta">CSE • Graduation 2027</div>
+                    </div>
+                  </div>
+                  <span class="status-pill status-shortlisted">Shortlisted</span>
+                </div>
+                <div class="am-applicant-detail-row">
+                  <span><strong>Skills:</strong> Node.js, Express, MongoDB</span>
+                  <span><strong>Projects:</strong> Inventory API, Auth Microservice</span>
+                  <span><strong>Experience:</strong> 1 backend internship</span>
+                  <span><strong>Applied:</strong> September 6, 2026</span>
+                </div>
+                <div class="am-applicant-summary">
+                  <strong>Candidate Summary</strong>
+                  CSE student with practical backend experience building REST APIs and authentication services using Node.js.
+                </div>
+                <div class="am-applicant-footer">
+                  <a href="#applicants-backend" class="btn-outline btn-sm">View Profile</a>
+                  <a href="#applicants-backend" class="btn-outline btn-sm">View CV</a>
+                  <a href="#applicants-backend" class="btn-primary btn-sm">Change Status</a>
+                </div>
+              </div>
+
+              <div class="am-applicant-card">
+                <div class="am-applicant-card-head">
+                  <div class="am-applicant-identity">
+                    <div class="am-applicant-avatar">KA</div>
+                    <div>
+                      <div class="am-applicant-name">Kazi Anik</div>
+                      <div class="am-applicant-meta">Data Science • Graduation 2028</div>
+                    </div>
+                  </div>
+                  <span class="status-pill status-rejected">Rejected</span>
+                </div>
+                <div class="am-applicant-detail-row">
+                  <span><strong>Skills:</strong> Python, Flask, SQL</span>
+                  <span><strong>Projects:</strong> Grade Prediction Model</span>
+                  <span><strong>Experience:</strong> Coursework only</span>
+                  <span><strong>Applied:</strong> September 4, 2026</span>
+                </div>
+                <div class="am-applicant-summary">
+                  <strong>Candidate Summary</strong>
+                  Data Science student with basic backend exposure through Flask coursework projects.
+                </div>
+                <div class="am-applicant-footer">
+                  <a href="#applicants-backend" class="btn-outline btn-sm">View Profile</a>
+                  <a href="#applicants-backend" class="btn-outline btn-sm">View CV</a>
+                  <a href="#applicants-backend" class="btn-primary btn-sm">Restore</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================================================================
+               SCREEN 14: CANDIDATE PROFILE — Shiblee Amin
+               ================================================================== -->
+          <section id="profile-shiblee" class="employer-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#applicants-frontend">← Back to Applicants: Frontend Developer Intern</a>
+            </div>
+
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Shiblee Amin</h1>
+                <p class="page-subheading">Candidate Profile • <span class="status-pill status-shortlisted">Shortlisted</span></p>
+              </div>
+              <a href="#cv-shiblee" class="btn-primary">📄 View CV</a>
+            </div>
+
+            <div class="am-profile-grid">
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 14px;">Personal Information</h3>
+                <div class="am-profile-field"><div class="am-profile-field-label">Full Name</div><div class="am-profile-field-value">Shiblee Amin</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Student ID</div><div class="am-profile-field-value">0112 21 045</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">University Email</div><div class="am-profile-field-value">samin2130748@bscse.uiu.ac.bd</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Phone Number</div><div class="am-profile-field-value">+880 1711-223344</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Department</div><div class="am-profile-field-value">Computer Science & Engineering</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Program</div><div class="am-profile-field-value">B.Sc. in CSE</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Graduation Year</div><div class="am-profile-field-value">2028</div></div>
+              </div>
+
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 14px;">Academic Information</h3>
+                <div class="am-profile-field"><div class="am-profile-field-label">CGPA</div><div class="am-profile-field-value">3.72 / 4.00</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Relevant Coursework</div><div class="am-profile-field-value">Data Structures, Algorithms, Database Systems, OOP</div></div>
+
+                <h3 class="card-title-h3" style="margin: 20px 0 10px;">Skills</h3>
+                <div class="am-applicant-tags">
+                  <span class="skill-tag-badge">Java</span>
+                  <span class="skill-tag-badge">Python</span>
+                  <span class="skill-tag-badge">C</span>
+                  <span class="skill-tag-badge">SQL</span>
+                  <span class="skill-tag-badge">HTML</span>
+                  <span class="skill-tag-badge">CSS</span>
+                </div>
+              </div>
+
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 14px;">Experience</h3>
+                <div class="am-profile-exp-item">
+                  <div class="am-profile-project-title">Software Development Intern — Campus IT Office</div>
+                  <div class="am-profile-project-desc">Assisted in maintaining internal record-keeping tools and fixed minor SQL reporting bugs (Summer 2025).</div>
+                </div>
+
+                <h3 class="card-title-h3" style="margin: 20px 0 10px;">Projects</h3>
+                <div class="am-profile-project-item">
+                  <div class="am-profile-project-title">ERP System</div>
+                  <div class="am-profile-project-desc">Academic team project — a role-based enterprise resource planning system built with Java and SQL.</div>
+                </div>
+                <div class="am-profile-project-item">
+                  <div class="am-profile-project-title">Traffic Control System</div>
+                  <div class="am-profile-project-desc">Simulation project modeling adaptive traffic signal timing using C.</div>
+                </div>
+              </div>
+
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 14px;">Application Information</h3>
+                <div class="am-profile-field"><div class="am-profile-field-label">Job Applied For</div><div class="am-profile-field-value">Frontend Developer Intern</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Company</div><div class="am-profile-field-value">ABC Technologies</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Application Date</div><div class="am-profile-field-value">September 8, 2026</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Current Status</div><div class="am-profile-field-value"><span class="status-pill status-shortlisted">Shortlisted</span></div></div>
+                <a href="#cv-shiblee" class="btn-outline" style="width: 100%; justify-content: center; margin-top: 8px;">📄 View CV</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================================================================
+               SCREEN 15: CV PREVIEW — Shiblee Amin
+               ================================================================== -->
+          <section id="cv-shiblee" class="employer-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#profile-shiblee">← Close CV / Back to Profile</a>
+            </div>
+
+            <div class="am-cv-page">
+              <div class="am-cv-header">
+                <h2>Shiblee Amin</h2>
+                <div class="am-cv-contact-line">samin2130748@bscse.uiu.ac.bd • +880 1711-223344 • Dhaka, Bangladesh</div>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">Education</div>
+                <p>B.Sc. in Computer Science & Engineering — United International University (2024–2028) • CGPA 3.72 / 4.00</p>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">Skills</div>
+                <div class="am-applicant-tags">
+                  <span class="skill-tag-badge">Java</span>
+                  <span class="skill-tag-badge">Python</span>
+                  <span class="skill-tag-badge">C</span>
+                  <span class="skill-tag-badge">SQL</span>
+                  <span class="skill-tag-badge">HTML</span>
+                  <span class="skill-tag-badge">CSS</span>
+                </div>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">Experience</div>
+                <p><strong>Software Development Intern</strong> — Campus IT Office (Summer 2025)<br />Maintained internal record-keeping tools and resolved SQL reporting issues.</p>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">Projects</div>
+                <p><strong>ERP System</strong> — Role-based enterprise resource planning system (Java, SQL).<br />
+                <strong>Traffic Control System</strong> — Adaptive traffic signal simulation (C).</p>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">References</div>
+                <p>Available upon request.</p>
+              </div>
+            </div>
+
+            <div class="am-cv-controls-bar">
+              <a href="#profile-shiblee" class="btn-outline">✕ Close CV</a>
+              <a href="#cv-shiblee" class="btn-primary">📥 Download CV</a>
+            </div>
+          </section>
+
+          <!-- ==================================================================
+               SCREEN 16: CANDIDATE PROFILE — Tasnia Rahman
+               ================================================================== -->
+          <section id="profile-tasnia" class="employer-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#applicants-frontend">← Back to Applicants: Frontend Developer Intern</a>
+            </div>
+
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Tasnia Rahman</h1>
+                <p class="page-subheading">Candidate Profile • <span class="status-pill status-review">Under Review</span></p>
+              </div>
+              <a href="#cv-tasnia" class="btn-primary">📄 View CV</a>
+            </div>
+
+            <div class="am-profile-grid">
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 14px;">Personal Information</h3>
+                <div class="am-profile-field"><div class="am-profile-field-label">Full Name</div><div class="am-profile-field-value">Tasnia Rahman</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Student ID</div><div class="am-profile-field-value">0112 11 067</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">University Email</div><div class="am-profile-field-value">trahman2130712@bscse.uiu.ac.bd</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Phone Number</div><div class="am-profile-field-value">+880 1822-556677</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Department</div><div class="am-profile-field-value">Computer Science & Engineering</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Program</div><div class="am-profile-field-value">B.Sc. in CSE</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Graduation Year</div><div class="am-profile-field-value">2027</div></div>
+              </div>
+
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 14px;">Academic Information</h3>
+                <div class="am-profile-field"><div class="am-profile-field-label">CGPA</div><div class="am-profile-field-value">3.65 / 4.00</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Relevant Coursework</div><div class="am-profile-field-value">Web Engineering, Human-Computer Interaction, OOP</div></div>
+
+                <h3 class="card-title-h3" style="margin: 20px 0 10px;">Skills</h3>
+                <div class="am-applicant-tags">
+                  <span class="skill-tag-badge">React</span>
+                  <span class="skill-tag-badge">JavaScript</span>
+                  <span class="skill-tag-badge">HTML</span>
+                  <span class="skill-tag-badge">CSS</span>
+                </div>
+              </div>
+
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 14px;">Experience</h3>
+                <div class="am-profile-exp-item">
+                  <div class="am-profile-project-title">Frontend Intern — PixelCraft Studio</div>
+                  <div class="am-profile-project-desc">Built and maintained responsive UI components for a client e-commerce storefront (6 months).</div>
+                </div>
+
+                <h3 class="card-title-h3" style="margin: 20px 0 10px;">Projects</h3>
+                <div class="am-profile-project-item">
+                  <div class="am-profile-project-title">Student Portal UI</div>
+                  <div class="am-profile-project-desc">Redesigned a university student dashboard UI using React.</div>
+                </div>
+                <div class="am-profile-project-item">
+                  <div class="am-profile-project-title">E-commerce Storefront</div>
+                  <div class="am-profile-project-desc">Responsive storefront with cart and checkout flow.</div>
+                </div>
+              </div>
+
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 14px;">Application Information</h3>
+                <div class="am-profile-field"><div class="am-profile-field-label">Job Applied For</div><div class="am-profile-field-value">Frontend Developer Intern</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Company</div><div class="am-profile-field-value">ABC Technologies</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Application Date</div><div class="am-profile-field-value">September 5, 2026</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Current Status</div><div class="am-profile-field-value"><span class="status-pill status-review">Under Review</span></div></div>
+                <a href="#cv-tasnia" class="btn-outline" style="width: 100%; justify-content: center; margin-top: 8px;">📄 View CV</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================================================================
+               SCREEN 17: CV PREVIEW — Tasnia Rahman
+               ================================================================== -->
+          <section id="cv-tasnia" class="employer-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#profile-tasnia">← Close CV / Back to Profile</a>
+            </div>
+
+            <div class="am-cv-page">
+              <div class="am-cv-header">
+                <h2>Tasnia Rahman</h2>
+                <div class="am-cv-contact-line">trahman2130712@bscse.uiu.ac.bd • +880 1822-556677 • Dhaka, Bangladesh</div>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">Education</div>
+                <p>B.Sc. in Computer Science & Engineering — United International University (2023–2027) • CGPA 3.65 / 4.00</p>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">Skills</div>
+                <div class="am-applicant-tags">
+                  <span class="skill-tag-badge">React</span>
+                  <span class="skill-tag-badge">JavaScript</span>
+                  <span class="skill-tag-badge">HTML</span>
+                  <span class="skill-tag-badge">CSS</span>
+                </div>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">Experience</div>
+                <p><strong>Frontend Intern</strong> — PixelCraft Studio (6 months)<br />Built and maintained responsive UI components for a client e-commerce storefront.</p>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">Projects</div>
+                <p><strong>Student Portal UI</strong> — React-based redesign of a university dashboard.<br />
+                <strong>E-commerce Storefront</strong> — Responsive storefront with cart and checkout flow.</p>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">References</div>
+                <p>Available upon request.</p>
+              </div>
+            </div>
+
+            <div class="am-cv-controls-bar">
+              <a href="#profile-tasnia" class="btn-outline">✕ Close CV</a>
+              <a href="#cv-tasnia" class="btn-primary">📥 Download CV</a>
+            </div>
+          </section>
+
+          <!-- ==================================================================
+               SCREEN 18: CANDIDATE PROFILE — Rakibul Hasan
+               ================================================================== -->
+          <section id="profile-rakibul" class="employer-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#applicants-frontend">← Back to Applicants: Frontend Developer Intern</a>
+            </div>
+
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Rakibul Hasan</h1>
+                <p class="page-subheading">Candidate Profile • <span class="status-pill status-interview">Interview</span></p>
+              </div>
+              <a href="#cv-rakibul" class="btn-primary">📄 View CV</a>
+            </div>
+
+            <div class="am-profile-grid">
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 14px;">Personal Information</h3>
+                <div class="am-profile-field"><div class="am-profile-field-label">Full Name</div><div class="am-profile-field-value">Rakibul Hasan</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Student ID</div><div class="am-profile-field-value">0112 11 089</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">University Email</div><div class="am-profile-field-value">rhasan2130734@bscse.uiu.ac.bd</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Phone Number</div><div class="am-profile-field-value">+880 1933-889900</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Department</div><div class="am-profile-field-value">Computer Science & Engineering</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Program</div><div class="am-profile-field-value">B.Sc. in CSE</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Graduation Year</div><div class="am-profile-field-value">2027</div></div>
+              </div>
+
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 14px;">Academic Information</h3>
+                <div class="am-profile-field"><div class="am-profile-field-label">CGPA</div><div class="am-profile-field-value">3.58 / 4.00</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Relevant Coursework</div><div class="am-profile-field-value">Web Engineering, Software Design Patterns</div></div>
+
+                <h3 class="card-title-h3" style="margin: 20px 0 10px;">Skills</h3>
+                <div class="am-applicant-tags">
+                  <span class="skill-tag-badge">JavaScript</span>
+                  <span class="skill-tag-badge">Vue.js</span>
+                  <span class="skill-tag-badge">Tailwind CSS</span>
+                </div>
+              </div>
+
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 14px;">Experience</h3>
+                <div class="am-profile-exp-item">
+                  <div class="am-profile-project-title">Freelance Frontend Developer</div>
+                  <div class="am-profile-project-desc">Delivered small business websites and landing pages for local clients (2024–present).</div>
+                </div>
+
+                <h3 class="card-title-h3" style="margin: 20px 0 10px;">Projects</h3>
+                <div class="am-profile-project-item">
+                  <div class="am-profile-project-title">Career Portal Clone</div>
+                  <div class="am-profile-project-desc">Rebuilt a university career portal UI as a personal practice project.</div>
+                </div>
+                <div class="am-profile-project-item">
+                  <div class="am-profile-project-title">Portfolio Site Generator</div>
+                  <div class="am-profile-project-desc">Tool that scaffolds a personal portfolio site from a JSON config.</div>
+                </div>
+              </div>
+
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 14px;">Application Information</h3>
+                <div class="am-profile-field"><div class="am-profile-field-label">Job Applied For</div><div class="am-profile-field-value">Frontend Developer Intern</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Company</div><div class="am-profile-field-value">ABC Technologies</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Application Date</div><div class="am-profile-field-value">September 2, 2026</div></div>
+                <div class="am-profile-field"><div class="am-profile-field-label">Current Status</div><div class="am-profile-field-value"><span class="status-pill status-interview">Interview</span></div></div>
+                <a href="#cv-rakibul" class="btn-outline" style="width: 100%; justify-content: center; margin-top: 8px;">📄 View CV</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==================================================================
+               SCREEN 19: CV PREVIEW — Rakibul Hasan
+               ================================================================== -->
+          <section id="cv-rakibul" class="employer-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#profile-rakibul">← Close CV / Back to Profile</a>
+            </div>
+
+            <div class="am-cv-page">
+              <div class="am-cv-header">
+                <h2>Rakibul Hasan</h2>
+                <div class="am-cv-contact-line">rhasan2130734@bscse.uiu.ac.bd • +880 1933-889900 • Dhaka, Bangladesh</div>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">Education</div>
+                <p>B.Sc. in Computer Science & Engineering — United International University (2023–2027) • CGPA 3.58 / 4.00</p>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">Skills</div>
+                <div class="am-applicant-tags">
+                  <span class="skill-tag-badge">JavaScript</span>
+                  <span class="skill-tag-badge">Vue.js</span>
+                  <span class="skill-tag-badge">Tailwind CSS</span>
+                </div>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">Experience</div>
+                <p><strong>Freelance Frontend Developer</strong> (2024–present)<br />Delivered small business websites and landing pages for local clients.</p>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">Projects</div>
+                <p><strong>Career Portal Clone</strong> — Practice rebuild of a university career portal UI.<br />
+                <strong>Portfolio Site Generator</strong> — Scaffolds a personal portfolio from a JSON config.</p>
+              </div>
+
+              <div class="am-cv-section">
+                <div class="am-cv-section-title">References</div>
+                <p>Available upon request.</p>
+              </div>
+            </div>
+
+            <div class="am-cv-controls-bar">
+              <a href="#profile-rakibul" class="btn-outline">✕ Close CV</a>
+              <a href="#cv-rakibul" class="btn-primary">📥 Download CV</a>
+            </div>
+          </section>
+
+        </div>
+      </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="post-success-modal" class="modal-overlay">
+      <div class="modal-dialog-box" style="text-align: center;">
+        <a href="#overview" class="modal-close-btn">✕</a>
+        <div style="font-size: 3rem; margin-bottom: 10px;">🎉</div>
+        <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 8px;">Position Submitted for Review!</h3>
+        <p style="color: #64748B; font-size: 0.875rem; margin-bottom: 20px;">Your posting has been sent to the UIU Career Services Admin Central. Once approved, it will be published to all eligible students.</p>
+        <a href="#overview" class="btn-primary">Return to Dashboard</a>
+      </div>
+    </div>
+  </body>
+</html>

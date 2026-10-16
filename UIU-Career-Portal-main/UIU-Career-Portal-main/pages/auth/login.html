@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In - UIU Career Portal</title>
+    <link rel="stylesheet" href="../../style.css" />
+  </head>
+  <body style="background: var(--bg-page); min-height: 100vh; display: flex; flex-direction: column;">
+    <!-- Top Global Switcher -->
+    <header class="role-quick-bar">
+      <div class="brand-badge"><span>UIU</span> Career Portal • Authentication</div>
+      <nav class="role-nav-links">
+        <a href="../../index.html" class="role-nav-btn">🌐 Public Home</a>
+        <a href="../../student.html" class="role-nav-btn">🎓 Student Portal</a>
+        <a href="../../admin.html" class="role-nav-btn">🏛️ Admin Central</a>
+        <a href="../../employer.html" class="role-nav-btn">🏢 Employer Hub</a>
+      </nav>
+    </header>
+
+    <!-- Main Split-Screen Container -->
+    <main style="flex: 1; display: grid; grid-template-columns: 1fr 1.1fr; min-height: calc(100vh - 45px);" class="auth-split-grid">
+      <!-- Left Visual Hero Banner -->
+      <div style="background: linear-gradient(135deg, #1E3A8A 0%, #0F172A 100%); color: #FFF; padding: 48px 40px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;" class="auth-visual-side">
+        <div>
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 32px;">
+            <div class="uiu-logo-badge" style="font-size: 1.1rem; padding: 6px 12px;">UIU</div>
+            <span style="font-size: 1.1rem; font-weight: 800; letter-spacing: -0.01em;">UIU CAREER PORTAL</span>
+          </div>
+          <h1 style="font-size: 2.25rem; font-weight: 800; line-height: 1.25; margin-bottom: 16px; color: #FFF;">
+            Welcome to the Official UIU Career Network
+          </h1>
+          <p style="font-size: 1rem; color: #CBD5E1; line-height: 1.6; max-width: 480px;">
+            Access verified on-campus placements, direct internship approvals, career counseling, and recruitment drives from 85+ trusted industry partners.
+          </p>
+        </div>
+
+        <!-- Metric highlights on left banner -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0;">
+          <div style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); padding: 14px; border-radius: var(--radius-md); backdrop-filter: blur(8px);">
+            <div style="font-size: 1.4rem; font-weight: 800; color: var(--primary);">1,250+</div>
+            <div style="font-size: 0.75rem; color: #CBD5E1;">Placed Students</div>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); padding: 14px; border-radius: var(--radius-md); backdrop-filter: blur(8px);">
+            <div style="font-size: 1.4rem; font-weight: 800; color: #60A5FA;">85+</div>
+            <div style="font-size: 0.75rem; color: #CBD5E1;">Partner Companies</div>
+          </div>
+          <div style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.12); padding: 14px; border-radius: var(--radius-md); backdrop-filter: blur(8px);">
+            <div style="font-size: 1.4rem; font-weight: 800; color: #34D399;">120+</div>
+            <div style="font-size: 0.75rem; color: #CBD5E1;">Active Openings</div>
+          </div>
+        </div>
+
+        <div style="font-size: 0.8125rem; color: #94A3B8;">
+          © 2026 United International University • Career Counseling & Student Affairs (CCSA)
+        </div>
+      </div>
+
+      <!-- Right Form Section -->
+      <div style="background: var(--bg-surface); padding: 48px 36px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div style="max-width: 440px; width: 100%;">
+          <div style="margin-bottom: 28px;">
+            <span class="skill-tag-badge" style="background: var(--primary-light); color: var(--primary-dark); font-weight: 700; margin-bottom: 8px; display: inline-block;">SIGN IN</span>
+            <h2 class="text-h2" style="font-size: 1.75rem; margin-bottom: 6px;">Sign In to Your Account</h2>
+            <p class="text-small">Enter your credentials to access the UIU Career Management Portal.</p>
+          </div>
+
+          <form action="../../student.html#dashboard" method="GET" style="display: flex; flex-direction: column; gap: 16px;">
+            <div class="form-group">
+              <label class="form-label" for="login-identifier">Email / University ID <span style="color: var(--color-danger);">*</span></label>
+              <input 
+                type="text" 
+                id="login-identifier" 
+                name="identifier" 
+                class="form-control" 
+                placeholder="e.g. 011211045 or mtarek2330749@bscse.uiu.ac.bd" 
+                required 
+              />
+            </div>
+
+            <div class="form-group">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <label class="form-label" for="login-password" style="margin-bottom: 0;">Password <span style="color: var(--color-danger);">*</span></label>
+                <a href="./forgot-password.html" style="font-size: 0.8125rem; color: var(--primary); font-weight: 600; text-decoration: none;">Forgot password?</a>
+              </div>
+              <input 
+                type="password" 
+                id="login-password" 
+                name="password" 
+                class="form-control" 
+                placeholder="Enter your password" 
+                required 
+              />
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <label class="checkbox-item-label" style="font-size: 0.875rem; cursor: pointer;">
+                <input type="checkbox" name="remember" class="custom-checkbox" checked /> Remember me
+              </label>
+            </div>
+
+            <button type="submit" class="btn-primary" style="justify-content: center; padding: 12px; font-size: 0.9375rem; font-weight: 700; width: 100%;">
+              Login
+            </button>
+          </form>
+
+          <div style="position: relative; text-align: center; margin: 24px 0;">
+            <hr style="border: 0; border-top: 1px solid var(--border-color);" />
+            <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bg-surface); padding: 0 12px; font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">
+              OR QUICK PORTAL ACCESS
+            </span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 24px;">
+            <a href="../../student.html" class="btn-outline btn-sm" style="justify-content: center; text-align: center; font-size: 0.75rem;">🎓 Student</a>
+            <a href="../../admin.html" class="btn-outline btn-sm" style="justify-content: center; text-align: center; font-size: 0.75rem;">🏛️ Admin</a>
+            <a href="../../employer.html" class="btn-outline btn-sm" style="justify-content: center; text-align: center; font-size: 0.75rem;">🏢 Employer</a>
+          </div>
+
+          <div style="text-align: center; font-size: 0.875rem; color: var(--text-body);">
+            Don't have an account? 
+            <a href="./register.html" style="color: var(--primary); font-weight: 700; text-decoration: none;">Register here</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

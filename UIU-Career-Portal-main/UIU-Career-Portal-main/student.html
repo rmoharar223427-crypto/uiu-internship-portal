@@ -1,0 +1,2806 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Portal - UIU Career Portal</title>
+    <meta name="description" content="Student Portal for UIU Career Portal - Explore jobs, manage applications, build resume." />
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+      /* Sub-view controller for student.html using CSS :target */
+      .student-view-pane {
+        display: none;
+      }
+      #dashboard:target,
+      body:not(:has(:target)) #dashboard {
+        display: block;
+      }
+      #dashboard:target { display: block; }
+      #browse-jobs:target { display: block; }
+      #job-detail:target { display: block; }
+      #my-applications:target { display: block; }
+      #resume-builder:target { display: block; }
+      #companies:target { display: block; }
+      #messages:target { display: block; }
+      #stats:target { display: block; }
+      #profile:target { display: block; }
+      #settings:target { display: block; }
+
+      :target ~ #dashboard {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <!-- Top Universal Navigation Switcher -->
+    <header class="role-quick-bar">
+      <div class="brand-badge">
+        <span>UIU</span> Career Portal
+      </div>
+      <nav class="role-nav-links">
+        <a href="./index.html" class="role-nav-btn">🌐 Public Home</a>
+        <a href="./student.html" class="role-nav-btn active">🎓 Student Portal</a>
+        <a href="./admin.html" class="role-nav-btn">🏛️ Admin Central</a>
+        <a href="./employer.html" class="role-nav-btn">🏢 Employer Hub</a>
+        <div class="role-nav-dropdown">
+          <button class="role-dropdown-btn">📑 Jump to Screen ▾</button>
+          <div class="role-dropdown-content">
+            <a href="./index.html">Page 1: Public Home</a>
+            <a href="./student.html#dashboard">Page 2: Student Dashboard</a>
+            <a href="./student.html#browse-jobs">Page 3: Browse Jobs</a>
+            <a href="./student.html#my-applications">Page 4: Applications</a>
+            <a href="./student.html#job-detail">Page 5: Job Detail</a>
+            <a href="./student.html#resume-builder">Page 6: Resume Builder</a>
+            <a href="./student.html#companies">Page 7: Student Companies</a>
+            <a href="./student.html#messages">Page 9: Student Chat</a>
+            <a href="./student.html#stats">Page 11: Placement Stats</a>
+            <a href="./student.html#profile">Page 12: Student Profile</a>
+            <a href="./admin.html">Go to Admin Central →</a>
+            <a href="./employer.html">Go to Employer Hub →</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="portal-layout">
+      <!-- Student Sidebar (Pages 2-12) -->
+      <aside class="portal-sidebar">
+        <div class="sidebar-brand">
+          <div class="uiu-logo-badge">UIU</div>
+          <div class="sidebar-brand-title">
+            UIU CAREER
+            <span>PORTAL</span>
+          </div>
+        </div>
+
+        <ul class="sidebar-menu-list">
+          <li>
+            <a href="#dashboard" class="sidebar-menu-link">
+              <span>📊</span> Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="#browse-jobs" class="sidebar-menu-link">
+              <span>🔍</span> Browse Jobs
+            </a>
+          </li>
+          <li>
+            <a href="#my-applications" class="sidebar-menu-link">
+              <span>📋</span> Applications
+            </a>
+          </li>
+          <li>
+            <a href="#companies" class="sidebar-menu-link">
+              <span>🏢</span> Companies
+            </a>
+          </li>
+          <li>
+            <a href="#messages" class="sidebar-menu-link">
+              <span>💬</span> Messages
+              <span class="sidebar-badge-count">3</span>
+            </a>
+          </li>
+          <li>
+            <a href="#profile" class="sidebar-menu-link">
+              <span>👤</span> My Profile
+            </a>
+          </li>
+          <li>
+            <a href="#resume-builder" class="sidebar-menu-link">
+              <span>📄</span> Resume Builder
+            </a>
+          </li>
+          <li>
+            <a href="#settings" class="sidebar-menu-link">
+              <span>⚙️</span> Settings
+            </a>
+          </li>
+        </ul>
+
+        <a href="./index.html" class="sidebar-footer-btn">
+          <span>🚪</span> Logout
+        </a>
+      </aside>
+
+      <!-- Student Portal Main Area -->
+      <main class="portal-main">
+        <!-- Topbar (Pages 2-12) -->
+        <header class="portal-topbar">
+          <div class="topbar-search-box">
+            <span class="search-icon-svg">🔍</span>
+            <input type="text" placeholder="Search jobs, companies, skills, keywords..." />
+          </div>
+          <div class="topbar-user-area">
+            <!-- Notification Icon -->
+            <a href="#notifications-modal" class="icon-btn-badge" title="Notifications">
+              <span>🔔</span>
+              <span class="notification-dot"></span>
+            </a>
+            <!-- Message Icon -->
+            <a href="#messages" class="icon-btn-badge" title="Messages">
+              <span>💬</span>
+              <span class="notification-dot" style="background: var(--primary);"></span>
+            </a>
+            <!-- Student Profile Dropdown UI -->
+            <div class="role-nav-dropdown">
+              <a href="#profile-menu" class="user-profile-pill">
+                <div class="user-avatar-circle">M</div>
+                <span>Mugdha ▾</span>
+              </a>
+              <div class="role-dropdown-content" style="right: 0; left: auto; min-width: 220px;">
+                <div style="padding: 10px 14px; border-bottom: 1px solid var(--border-color);">
+                  <div style="font-weight: 700; font-size: 0.875rem; color: var(--text-heading);">Mahfuzur Rahman (Mugdha)</div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">011211045 • CSE Department</div>
+                  <div style="font-size: 0.75rem; color: var(--primary); font-weight: 700; margin-top: 2px;">CGPA: 3.84 / 4.00</div>
+                </div>
+                <a href="#profile">👤 View Profile</a>
+                <a href="#resume-builder">📄 Resume Builder</a>
+                <a href="#my-applications">📋 My Applications</a>
+                <a href="#settings">⚙️ Account Settings</a>
+                <a href="./index.html" style="color: var(--color-danger); border-top: 1px solid var(--border-color);">🚪 Log Out</a>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Dynamic Screen Content Sections -->
+        <div class="portal-content-body">
+          
+            <!-- SCREEN 1: STUDENT DASHBOARD (Page 2) -->
+            <section id="dashboard" class="student-view-pane">
+              <div class="page-title-row">
+                <div>
+                  <h1 class="page-main-heading">Welcome Back, Mahfuzur! 👋</h1>
+                  <p class="page-subheading">Here is an update on your internship and job application status at UIU Career Services.</p>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                  <a href="#resume-builder" class="btn-outline btn-sm">📄 Edit Resume</a>
+                  <a href="#browse-jobs" class="btn-primary btn-sm">🔍 Find Openings</a>
+                </div>
+              </div>
+
+              <!-- Profile Completion Indicator Banner -->
+              <div class="portal-card" style="margin-bottom: 24px; padding: 20px 24px; background: linear-gradient(135deg, #FFF7ED 0%, #FFFFFF 100%); border-left: 4px solid var(--primary);">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+                  <div style="flex: 1; min-width: 260px;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                      <span style="font-size: 1.25rem;">⚡</span>
+                      <strong style="font-size: 1rem; color: var(--text-heading);">Profile Strength: 85% Complete</strong>
+                      <span class="skill-tag-badge" style="background: var(--color-success-bg); color: var(--color-success);">Nearly Ready for Recruiters</span>
+                    </div>
+                    <p style="font-size: 0.8125rem; color: var(--text-muted);">
+                      Add your <strong>Final Year Design Project</strong> and <strong>GitHub Repository</strong> to achieve 100% recruiter visibility!
+                    </p>
+                    <div style="width: 100%; height: 8px; background: #E2E8F0; border-radius: 999px; margin-top: 10px; overflow: hidden;">
+                      <div style="width: 85%; height: 100%; background: linear-gradient(90deg, var(--primary) 0%, #10B981 100%); border-radius: 999px;"></div>
+                    </div>
+                  </div>
+                  <a href="#profile" class="btn-primary btn-sm" style="white-space: nowrap;">Complete Profile →</a>
+                </div>
+              </div>
+
+              <!-- 5 Dashboard Statistics Cards -->
+              <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 24px;" class="metrics-grid-5">
+                <div class="metric-stat-card">
+                  <div class="stat-content-box">
+                    <div class="stat-label-text">Applications</div>
+                    <div class="stat-huge-number" style="color: var(--primary);">12</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">+2 this week</div>
+                  </div>
+                  <div class="stat-icon-wrapper stat-icon-blue">📋</div>
+                </div>
+
+                <div class="metric-stat-card">
+                  <div class="stat-content-box">
+                    <div class="stat-label-text">Under Review</div>
+                    <div class="stat-huge-number" style="color: #D97706;">5</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">CCSA & HR Review</div>
+                  </div>
+                  <div class="stat-icon-wrapper stat-icon-amber">⏳</div>
+                </div>
+
+                <div class="metric-stat-card">
+                  <div class="stat-content-box">
+                    <div class="stat-label-text">Shortlisted</div>
+                    <div class="stat-huge-number" style="color: #7C3AED;">2</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">Interviews Ready</div>
+                  </div>
+                  <div class="stat-icon-wrapper stat-icon-purple">👥</div>
+                </div>
+
+                <div class="metric-stat-card">
+                  <div class="stat-content-box">
+                    <div class="stat-label-text">Selected</div>
+                    <div class="stat-huge-number" style="color: #059669;">1</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">Offer Letter Sent</div>
+                  </div>
+                  <div class="stat-icon-wrapper stat-icon-green">🎉</div>
+                </div>
+
+                <div class="metric-stat-card">
+                  <div class="stat-content-box">
+                    <div class="stat-label-text">Messages</div>
+                    <div class="stat-huge-number" style="color: #0284C7;">3</div>
+                    <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 2px;">From Recruiters</div>
+                  </div>
+                  <div class="stat-icon-wrapper" style="background: #E0F2FE; color: #0284C7;">💬</div>
+                </div>
+              </div>
+
+              <!-- Main Dashboard 2-Column Section -->
+              <div style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px; align-items: start;">
+                <!-- Left Column: Recommended Jobs -->
+                <div class="portal-card">
+                  <div class="portal-card-header">
+                    <div>
+                      <h2 class="card-title-h3">Recommended Jobs</h2>
+                      <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; font-size: 0.75rem; color: var(--text-muted);">
+                        <span>🎯 Matched on:</span>
+                        <span class="skill-tag-badge" style="background: #EFF6FF; color: #1D4ED8;">Department: CSE</span>
+                        <span class="skill-tag-badge" style="background: #F0FDF4; color: #15803D;">CGPA: 3.84 ≥ 3.50</span>
+                        <span class="skill-tag-badge" style="background: #FFF7ED; color: #C2410C;">Skills & Interests: React, ML</span>
+                      </div>
+                    </div>
+                    <a href="#browse-jobs" class="section-link-all">View All (28)</a>
+                  </div>
+
+                  <div class="job-feed-list">
+                    <!-- Job Item 1 -->
+                    <div class="student-job-card">
+                      <div class="job-main-info">
+                        <div class="job-icon-box" style="background: #FFF7ED; color: var(--primary);">🏢</div>
+                        <div style="flex: 1;">
+                          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                            <h3 class="job-title-link"><a href="#job-detail">Software Engineering Intern</a></h3>
+                            <span class="status-pill pill-verified" style="font-size: 0.7rem;">98% Match</span>
+                          </div>
+                          <div class="job-company-location">
+                            <strong>ABC Technologies</strong> • 📍 Dhaka • <span style="color: var(--primary); font-weight: 700;">$300/month</span>
+                          </div>
+                          <div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px;">
+                            <span class="skill-tag-badge">React</span>
+                            <span class="skill-tag-badge">TypeScript</span>
+                            <span class="skill-tag-badge">Node.js</span>
+                            <span class="skill-tag-badge">DSA</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="job-salary-apply" style="flex-direction: column; align-items: flex-end; gap: 8px;">
+                        <button type="button" class="btn-primary btn-sm" onclick="openApplyModal('Software Engineering Intern', 'ABC Technologies')">Apply Now</button>
+                        <a href="#saved-confirm" class="btn-bookmark-icon" title="Save Job">🔖</a>
+                      </div>
+                    </div>
+
+                    <!-- Job Item 2 -->
+                    <div class="student-job-card">
+                      <div class="job-main-info">
+                        <div class="job-icon-box" style="background:#E0F2FE; color:#0284C7;">💻</div>
+                        <div style="flex: 1;">
+                          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                            <h3 class="job-title-link"><a href="#job-detail">Full Stack Developer (Graduate Trainee)</a></h3>
+                            <span class="status-pill pill-verified" style="font-size: 0.7rem;">94% Match</span>
+                          </div>
+                          <div class="job-company-location">
+                            <strong>Tech Solution Ltd.</strong> • 📍 Dhaka • <span style="color: var(--primary); font-weight: 700;">$600/month</span>
+                          </div>
+                          <div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px;">
+                            <span class="skill-tag-badge">Next.js</span>
+                            <span class="skill-tag-badge">PostgreSQL</span>
+                            <span class="skill-tag-badge">REST API</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="job-salary-apply" style="flex-direction: column; align-items: flex-end; gap: 8px;">
+                        <button type="button" class="btn-primary btn-sm" onclick="openApplyModal('Full Stack Developer (Graduate Trainee)', 'Tech Solution Ltd.')">Apply Now</button>
+                        <a href="#saved-confirm" class="btn-bookmark-icon" title="Save Job">🔖</a>
+                      </div>
+                    </div>
+
+                    <!-- Job Item 3 -->
+                    <div class="student-job-card">
+                      <div class="job-main-info">
+                        <div class="job-icon-box" style="background:#EDE9FE; color:#7C3AED;">🤖</div>
+                        <div style="flex: 1;">
+                          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                            <h3 class="job-title-link"><a href="#job-detail">AI / Machine Learning Intern</a></h3>
+                            <span class="status-pill pill-verified" style="font-size: 0.7rem;">91% Match</span>
+                          </div>
+                          <div class="job-company-location">
+                            <strong>Apex DataSoft</strong> • 🌐 Remote • <span style="color: var(--primary); font-weight: 700;">$400/month</span>
+                          </div>
+                          <div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 4px;">
+                            <span class="skill-tag-badge">Python</span>
+                            <span class="skill-tag-badge">PyTorch</span>
+                            <span class="skill-tag-badge">NLP</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="job-salary-apply" style="flex-direction: column; align-items: flex-end; gap: 8px;">
+                        <button type="button" class="btn-primary btn-sm" onclick="openApplyModal('AI / Machine Learning Intern', 'Apex DataSoft')">Apply Now</button>
+                        <a href="#saved-confirm" class="btn-bookmark-icon" title="Save Job">🔖</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right Column: Recent Applications, Upcoming Interviews & Notifications -->
+                <div style="display: flex; flex-direction: column; gap: 24px;">
+                  <!-- Upcoming Interviews Card -->
+                  <div class="portal-card" style="border-top: 3px solid #7C3AED;">
+                    <div class="portal-card-header" style="margin-bottom: 12px;">
+                      <h3 class="card-title-h3">📅 Upcoming Interviews</h3>
+                      <span class="status-pill pill-applied">2 Scheduled</span>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                      <div style="background: var(--bg-muted); padding: 12px; border-radius: var(--radius-md); border-left: 3px solid #7C3AED;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                          <strong style="font-size: 0.875rem; color: var(--text-heading);">ABC Technologies</strong>
+                          <span style="font-size: 0.7rem; font-weight: 700; color: #7C3AED; background: #EDE9FE; padding: 2px 6px; border-radius: 4px;">Technical Round</span>
+                        </div>
+                        <div style="font-size: 0.75rem; color: var(--text-body); margin-top: 4px;">Role: Software Engineering Intern</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">⏰ Tomorrow, 11:00 AM • Google Meet</div>
+                      </div>
+
+                      <div style="background: var(--bg-muted); padding: 12px; border-radius: var(--radius-md); border-left: 3px solid var(--primary);">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                          <strong style="font-size: 0.875rem; color: var(--text-heading);">Apex Data Labs</strong>
+                          <span style="font-size: 0.7rem; font-weight: 700; color: var(--primary-dark); background: var(--primary-light); padding: 2px 6px; border-radius: 4px;">HR Screening</span>
+                        </div>
+                        <div style="font-size: 0.75rem; color: var(--text-body); margin-top: 4px;">Role: Data Science Intern</div>
+                        <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;">⏰ Sep 03, 2026 • UIU CCSA Interview Room 2</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Recent Applications Mini List -->
+                  <div class="portal-card">
+                    <div class="portal-card-header" style="margin-bottom: 12px;">
+                      <h3 class="card-title-h3">📋 Recent Applications</h3>
+                      <a href="#my-applications" class="section-link-all">View All</a>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 8px;">
+                      <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-light); font-size: 0.8125rem;">
+                        <div>
+                          <div style="font-weight: 700; color: var(--text-heading);">Junior Frontend Eng.</div>
+                          <div style="font-size: 0.75rem; color: var(--text-muted);">Brain Station 23 • Applied Aug 29</div>
+                        </div>
+                        <span class="status-pill pill-verified">Selected</span>
+                      </div>
+                      <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border-light); font-size: 0.8125rem;">
+                        <div>
+                          <div style="font-weight: 700; color: var(--text-heading);">SWE Intern</div>
+                          <div style="font-size: 0.75rem; color: var(--text-muted);">ABC Technologies • Applied Aug 24</div>
+                        </div>
+                        <span class="status-pill pill-applied">Shortlisted</span>
+                      </div>
+                      <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 0; font-size: 0.8125rem;">
+                        <div>
+                          <div style="font-weight: 700; color: var(--text-heading);">Data Analyst Intern</div>
+                          <div style="font-size: 0.75rem; color: var(--text-muted);">DataSoft • Applied Aug 20</div>
+                        </div>
+                        <span class="status-pill pill-pending">Under Review</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Recent Notifications -->
+                  <div class="portal-card">
+                    <div class="portal-card-header" style="margin-bottom: 12px;">
+                      <h3 class="card-title-h3">🔔 Recent Notifications</h3>
+                      <a href="#notifications-modal" class="section-link-all">Open</a>
+                    </div>
+                    <div style="display: flex; flex-direction: column; gap: 10px; font-size: 0.8125rem;">
+                      <div style="display: flex; gap: 10px;">
+                        <span style="color: var(--primary); font-size: 1rem;">📢</span>
+                        <div>
+                          <div style="font-weight: 600; color: var(--text-heading);">On-Campus Placement Drive Announced</div>
+                          <div style="font-size: 0.75rem; color: var(--text-muted);">Samsung R&D is conducting direct written tests on Sep 10.</div>
+                        </div>
+                      </div>
+                      <div style="display: flex; gap: 10px;">
+                        <span style="color: #059669; font-size: 1rem;">✅</span>
+                        <div>
+                          <div style="font-weight: 600; color: var(--text-heading);">Resume Approved by CCSA Advisor</div>
+                          <div style="font-size: 0.75rem; color: var(--text-muted);">Your ATS resume is now active for partner companies.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          <!-- SCREEN 2: BROWSE JOBS (Page 3) -->
+          <section id="browse-jobs" class="student-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Browse Jobs</h1>
+                <p class="page-subheading">Explore 120+ active job and internship openings verified by UIU Career Services.</p>
+              </div>
+              <div style="font-size: 0.875rem; color: var(--text-muted); display: flex; align-items: center; gap: 8px;">
+                <span>Sort by:</span>
+                <select class="form-control" style="width: auto; padding: 6px 12px; font-size: 0.8125rem;">
+                  <option>Most Recent</option>
+                  <option>Highest Match (CGPA & Skills)</option>
+                  <option>Salary: High to Low</option>
+                  <option>Deadline: Urgent First</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Global Job Search Bar -->
+            <div class="portal-card" style="padding: 16px 20px; margin-bottom: 24px;">
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <div style="position: relative; flex: 1;">
+                  <span style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 1.1rem; color: var(--text-muted);">🔍</span>
+                  <input 
+                    type="text" 
+                    class="form-control" 
+                    placeholder="Search jobs, keywords, companies" 
+                    style="padding-left: 42px; font-size: 0.9375rem;" 
+                  />
+                </div>
+                <button class="btn-primary" style="padding: 10px 20px; font-weight: 700;">Search Jobs</button>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 260px 1fr; gap: 24px;">
+              <!-- Left Filter Sidebar -->
+              <div class="portal-card" style="padding: 20px; align-self: flex-start;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border-light); padding-bottom: 8px;">
+                  <h2 style="font-size: 1rem; font-weight: 800; color: var(--text-heading);">Filters</h2>
+                  <a href="#browse-jobs" style="font-size: 0.75rem; color: var(--primary); font-weight: 600; text-decoration: none;">Reset All</a>
+                </div>
+                
+                <!-- Department Filter -->
+                <div style="margin-bottom: 20px;">
+                  <span class="form-label" style="font-weight: 700; color: var(--text-heading);">Department</span>
+                  <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" checked /> CSE <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">(64)</span></label>
+                  <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" /> EEE <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">(28)</span></label>
+                  <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" /> BBA <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">(32)</span></label>
+                  <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" /> Other <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">(12)</span></label>
+                </div>
+
+                <!-- Job Type Filter -->
+                <div style="margin-bottom: 20px;">
+                  <span class="form-label" style="font-weight: 700; color: var(--text-heading);">Job Type</span>
+                  <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" checked /> Internship <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">(58)</span></label>
+                  <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" /> Full-time <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">(46)</span></label>
+                  <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" /> Part-time <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">(18)</span></label>
+                  <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" /> Other <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">(6)</span></label>
+                </div>
+
+                <!-- Location Filter -->
+                <div style="margin-bottom: 20px;">
+                  <span class="form-label" style="font-weight: 700; color: var(--text-heading);">Location</span>
+                  <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" checked /> Dhaka <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">(88)</span></label>
+                  <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" checked /> Remote <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">(32)</span></label>
+                  <label class="checkbox-item-label"><input type="checkbox" class="custom-checkbox" /> Other <span style="font-size: 0.75rem; color: var(--text-muted); margin-left: auto;">(8)</span></label>
+                </div>
+
+                <!-- Salary Filter -->
+                <div>
+                  <span class="form-label" style="font-weight: 700; color: var(--text-heading);">Minimum Salary</span>
+                  <input type="range" min="0" max="1500" value="250" style="width: 100%; accent-color: var(--primary);" />
+                  <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">
+                    <span>$0</span>
+                    <strong style="color: var(--primary);">$250+/month</strong>
+                    <span>$1,500+</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Jobs Feed List with Pagination -->
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.875rem; color: var(--text-muted);">
+                  <span>Showing <strong>1 – 6</strong> of <strong>128</strong> open positions</span>
+                  <span class="status-pill pill-verified" style="font-size: 0.75rem;">Verified UIU Partner Employers</span>
+                </div>
+
+                <!-- Job 1 -->
+                <div class="student-job-card">
+                  <div class="job-main-info">
+                    <div class="job-icon-box">🏢</div>
+                    <div style="flex: 1;">
+                      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                        <h3 class="job-title-link"><a href="#job-detail">Software Engineering Intern</a></h3>
+                        <span class="status-pill pill-applied" style="font-size: 0.7rem;">Internship</span>
+                      </div>
+                      <div class="job-company-location" style="margin-top: 4px;">
+                        <strong>ABC Technologies</strong> • 📍 Dhaka • <span style="color: var(--primary); font-weight: 700;">$300/month</span>
+                      </div>
+                      <div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
+                        <span class="skill-tag-badge">C++</span>
+                        <span class="skill-tag-badge">Java</span>
+                        <span class="skill-tag-badge">DSA</span>
+                        <span class="skill-tag-badge">Git</span>
+                        <span style="font-size: 0.75rem; color: var(--color-danger); margin-left: 6px;">⏳ Deadline: Aug 20, 2026</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="job-salary-apply" style="flex-direction: column; align-items: flex-end; gap: 8px;">
+                    <button type="button" class="btn-primary btn-sm" onclick="openApplyModal('Software Engineering Intern', 'ABC Technologies')">Apply Now</button>
+                    <a href="#saved-confirm" class="btn-outline btn-sm" style="font-size: 0.75rem;">🔖 Save Job</a>
+                  </div>
+                </div>
+
+                <!-- Job 2 -->
+                <div class="student-job-card">
+                  <div class="job-main-info">
+                    <div class="job-icon-box" style="background:#E0F2FE; color:#0284C7;">💻</div>
+                    <div style="flex: 1;">
+                      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                        <h3 class="job-title-link"><a href="#job-detail">Frontend Developer Intern</a></h3>
+                        <span class="status-pill pill-applied" style="font-size: 0.7rem;">Internship</span>
+                      </div>
+                      <div class="job-company-location" style="margin-top: 4px;">
+                        <strong>Tech Solution Ltd.</strong> • 📍 Dhaka • <span style="color: var(--primary); font-weight: 700;">$250/month</span>
+                      </div>
+                      <div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
+                        <span class="skill-tag-badge">React</span>
+                        <span class="skill-tag-badge">JavaScript</span>
+                        <span class="skill-tag-badge">HTML/CSS</span>
+                        <span style="font-size: 0.75rem; color: var(--color-danger); margin-left: 6px;">⏳ Deadline: Aug 25, 2026</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="job-salary-apply" style="flex-direction: column; align-items: flex-end; gap: 8px;">
+                    <button type="button" class="btn-primary btn-sm" onclick="openApplyModal('Frontend Developer Intern', 'Tech Solution Ltd.')">Apply Now</button>
+                    <a href="#saved-confirm" class="btn-outline btn-sm" style="font-size: 0.75rem;">🔖 Save Job</a>
+                  </div>
+                </div>
+
+                <!-- Job 3 -->
+                <div class="student-job-card">
+                  <div class="job-main-info">
+                    <div class="job-icon-box" style="background:#EDE9FE; color:#7C3AED;">🤖</div>
+                    <div style="flex: 1;">
+                      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                        <h3 class="job-title-link"><a href="#job-detail">Machine Learning Intern</a></h3>
+                        <span class="status-pill pill-applied" style="font-size: 0.7rem;">Internship</span>
+                      </div>
+                      <div class="job-company-location" style="margin-top: 4px;">
+                        <strong>DataSoft Systems</strong> • 🌐 Remote • <span style="color: var(--primary); font-weight: 700;">$300/month</span>
+                      </div>
+                      <div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
+                        <span class="skill-tag-badge">Python</span>
+                        <span class="skill-tag-badge">PyTorch</span>
+                        <span class="skill-tag-badge">Data Analysis</span>
+                        <span style="font-size: 0.75rem; color: var(--color-danger); margin-left: 6px;">⏳ Deadline: Aug 28, 2026</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="job-salary-apply" style="flex-direction: column; align-items: flex-end; gap: 8px;">
+                    <button type="button" class="btn-primary btn-sm" onclick="openApplyModal('Machine Learning Intern', 'DataSoft Systems')">Apply Now</button>
+                    <a href="#saved-confirm" class="btn-outline btn-sm" style="font-size: 0.75rem;">🔖 Save Job</a>
+                  </div>
+                </div>
+
+                <!-- Job 4 -->
+                <div class="student-job-card">
+                  <div class="job-main-info">
+                    <div class="job-icon-box" style="background:#D1FAE5; color:#059669;">📊</div>
+                    <div style="flex: 1;">
+                      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                        <h3 class="job-title-link"><a href="#job-detail">Junior Full Stack Engineer</a></h3>
+                        <span class="status-pill pill-verified" style="font-size: 0.7rem;">Full-time</span>
+                      </div>
+                      <div class="job-company-location" style="margin-top: 4px;">
+                        <strong>BRAC IT Services</strong> • 📍 Dhaka • <span style="color: var(--primary); font-weight: 700;">$650/month</span>
+                      </div>
+                      <div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
+                        <span class="skill-tag-badge">Node.js</span>
+                        <span class="skill-tag-badge">PostgreSQL</span>
+                        <span class="skill-tag-badge">React</span>
+                        <span style="font-size: 0.75rem; color: var(--color-danger); margin-left: 6px;">⏳ Deadline: Sep 05, 2026</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="job-salary-apply" style="flex-direction: column; align-items: flex-end; gap: 8px;">
+                    <button type="button" class="btn-primary btn-sm" onclick="openApplyModal('Junior Full Stack Engineer', 'BRAC IT Services')">Apply Now</button>
+                    <a href="#saved-confirm" class="btn-outline btn-sm" style="font-size: 0.75rem;">🔖 Save Job</a>
+                  </div>
+                </div>
+
+                <!-- Job 5 -->
+                <div class="student-job-card">
+                  <div class="job-main-info">
+                    <div class="job-icon-box" style="background:#FEF3C7; color:#D97706;">⚡</div>
+                    <div style="flex: 1;">
+                      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                        <h3 class="job-title-link"><a href="#job-detail">Embedded Systems Engineer</a></h3>
+                        <span class="status-pill pill-verified" style="font-size: 0.7rem;">Full-time</span>
+                      </div>
+                      <div class="job-company-location" style="margin-top: 4px;">
+                        <strong>Samsung R&D Institute</strong> • 📍 Dhaka • <span style="color: var(--primary); font-weight: 700;">$750/month</span>
+                      </div>
+                      <div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
+                        <span class="skill-tag-badge">C/C++</span>
+                        <span class="skill-tag-badge">Microcontrollers</span>
+                        <span class="skill-tag-badge">RTOS</span>
+                        <span style="font-size: 0.75rem; color: var(--color-danger); margin-left: 6px;">⏳ Deadline: Sep 12, 2026</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="job-salary-apply" style="flex-direction: column; align-items: flex-end; gap: 8px;">
+                    <button type="button" class="btn-primary btn-sm" onclick="openApplyModal('Embedded Systems Engineer', 'Samsung R&amp;D Institute')">Apply Now</button>
+                    <a href="#saved-confirm" class="btn-outline btn-sm" style="font-size: 0.75rem;">🔖 Save Job</a>
+                  </div>
+                </div>
+
+                <!-- Job 6 -->
+                <div class="student-job-card">
+                  <div class="job-main-info">
+                    <div class="job-icon-box" style="background:#FCE7F3; color:#DB2777;">📈</div>
+                    <div style="flex: 1;">
+                      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+                        <h3 class="job-title-link"><a href="#job-detail">Marketing & Growth Associate</a></h3>
+                        <span class="status-pill pill-applied" style="font-size: 0.7rem;">Part-time</span>
+                      </div>
+                      <div class="job-company-location" style="margin-top: 4px;">
+                        <strong>Pathao</strong> • 📍 Dhaka • <span style="color: var(--primary); font-weight: 700;">$300/month</span>
+                      </div>
+                      <div style="margin-top: 6px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center;">
+                        <span class="skill-tag-badge">Digital Marketing</span>
+                        <span class="skill-tag-badge">SEO</span>
+                        <span class="skill-tag-badge">Content</span>
+                        <span style="font-size: 0.75rem; color: var(--color-danger); margin-left: 6px;">⏳ Deadline: Sep 15, 2026</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="job-salary-apply" style="flex-direction: column; align-items: flex-end; gap: 8px;">
+                    <button type="button" class="btn-primary btn-sm" onclick="openApplyModal('Marketing &amp; Growth Associate', 'Pathao')">Apply Now</button>
+                    <a href="#saved-confirm" class="btn-outline btn-sm" style="font-size: 0.75rem;">🔖 Save Job</a>
+                  </div>
+                </div>
+
+                <!-- Pagination Component -->
+                <div class="table-pagination" style="margin-top: 16px; background: var(--bg-surface); padding: 14px 20px; border-radius: var(--radius-md); border: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center;">
+                  <div style="font-size: 0.8125rem; color: var(--text-muted);">
+                    Page <strong>1</strong> of <strong>6</strong> (Showing 6 of 128 results)
+                  </div>
+                  <div class="pagination-controls" style="display: flex; gap: 6px; align-items: center;">
+                    <a href="#browse-jobs" class="pagination-page-btn" style="opacity: 0.5; pointer-events: none;">« Previous</a>
+                    <a href="#browse-jobs" class="pagination-page-btn active">1</a>
+                    <a href="#browse-jobs" class="pagination-page-btn">2</a>
+                    <a href="#browse-jobs" class="pagination-page-btn">3</a>
+                    <a href="#browse-jobs" class="pagination-page-btn">4</a>
+                    <a href="#browse-jobs" class="pagination-page-btn">Next »</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 3: MY APPLICATIONS (Page 4) -->
+          <section id="my-applications" class="student-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">My Applications</h1>
+                <p class="page-subheading">Track the status of all your submitted job applications.</p>
+              </div>
+            </div>
+
+            <div class="portal-card">
+              <!-- Filter Tabs (Page 4) -->
+              <div class="portal-tabs-nav">
+                <button class="portal-tab-btn active">All (12)</button>
+                <button class="portal-tab-btn">Applied (12)</button>
+                <button class="portal-tab-btn">Under Review (5)</button>
+                <button class="portal-tab-btn">Selected (2)</button>
+                <button class="portal-tab-btn">Shortlisted (1)</button>
+                <button class="portal-tab-btn">Rejected (2)</button>
+              </div>
+
+              <!-- Applications Table (Page 4) -->
+              <div class="data-table-wrapper">
+                <table class="portal-table">
+                  <thead>
+                    <tr>
+                      <th>Company</th>
+                      <th>Position</th>
+                      <th>Applied Date</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>ABC Technologies</strong></td>
+                      <td>Software Engineering Intern</td>
+                      <td>Aug 1, 2026</td>
+                      <td><span class="status-pill status-review">Under Review</span></td>
+                      <td><a href="#job-detail" class="btn-action-view">View</a></td>
+                    </tr>
+                    <tr>
+                      <td><strong>XYZ Limited</strong></td>
+                      <td>Web Developer Intern</td>
+                      <td>Aug 2, 2026</td>
+                      <td><span class="status-pill status-shortlisted">Shortlisted</span></td>
+                      <td><a href="#job-detail" class="btn-action-view">View</a></td>
+                    </tr>
+                    <tr>
+                      <td><strong>Tech Solutions</strong></td>
+                      <td>Frontend Developer Intern</td>
+                      <td>Aug 3, 2026</td>
+                      <td><span class="status-pill status-applied">Applied</span></td>
+                      <td><a href="#job-detail" class="btn-action-view">View</a></td>
+                    </tr>
+                    <tr>
+                      <td><strong>DataSoft</strong></td>
+                      <td>Data Analyst Intern</td>
+                      <td>Aug 4, 2026</td>
+                      <td><span class="status-pill status-rejected">Rejected</span></td>
+                      <td><a href="#job-detail" class="btn-action-view">View</a></td>
+                    </tr>
+                    <tr>
+                      <td><strong>AI Labs</strong></td>
+                      <td>Machine Learning Intern</td>
+                      <td>Aug 4, 2026</td>
+                      <td><span class="status-pill status-applied">Applied</span></td>
+                      <td><a href="#job-detail" class="btn-action-view">View</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 4: JOB DETAILS VIEW (Page 5) -->
+          <section id="job-detail" class="student-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 16px;">
+              <a href="#browse-jobs" class="btn-outline btn-sm" style="display: inline-flex; align-items: center; gap: 6px;">
+                ← Back to Jobs
+              </a>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 320px; gap: 24px; align-items: start;">
+              <!-- Main Job Description -->
+              <div class="portal-card" style="padding: 28px 32px;">
+                <div class="portal-card-header" style="align-items: flex-start; padding-bottom: 20px; border-bottom: 1px solid var(--border-light); margin-bottom: 24px;">
+                  <div style="display: flex; gap: 16px; align-items: center;">
+                    <div class="job-icon-box" style="width: 64px; height: 64px; font-size: 2rem; background: #FFF7ED; color: var(--primary);">🏢</div>
+                    <div>
+                      <h2 style="font-size: 1.6rem; font-weight: 800; color: var(--text-heading); margin-bottom: 4px;">Software Engineering Intern</h2>
+                      <p style="color: var(--text-body); font-size: 0.9375rem; margin-bottom: 8px;">
+                        <strong>ABC Technologies</strong> • 📍 Dhaka, Bangladesh • <span style="color: var(--primary); font-weight: 800; font-size: 1.05rem;">$300/month</span>
+                      </p>
+                      <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                        <span class="status-pill pill-applied">Internship</span>
+                        <span class="status-pill pill-verified">On-Campus Partner</span>
+                        <span class="skill-tag-badge">C++</span>
+                        <span class="skill-tag-badge">Java</span>
+                        <span class="skill-tag-badge">DSA</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div style="display: flex; gap: 10px; align-items: center;">
+                    <button type="button" class="btn-primary" style="padding: 10px 20px; font-weight: 700;" onclick="openApplyModal('Software Engineering Intern', 'ABC Technologies')">Apply Now</button>
+                    <a href="#saved-confirm" class="btn-outline" style="padding: 10px 16px;">🔖 Save Job</a>
+                  </div>
+                </div>
+
+                <div>
+                  <!-- Section 1: Job Description -->
+                  <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 10px; color: var(--text-heading);">Job Description</h3>
+                  <p style="color: var(--text-body); line-height: 1.75; margin-bottom: 24px; font-size: 0.9375rem;">
+                    ABC Technologies is looking for a motivated and passionate Software Engineering Intern to join our core backend and platform engineering team in Dhaka. In this role, you will work alongside senior software architects on scalable microservices, write performant database queries, and contribute to internal automated testing pipelines. This internship provides direct mentorship under UIU alumni leaders and opportunities for full-time conversion upon graduation.
+                  </p>
+
+                  <!-- Section 2: Requirements -->
+                  <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 10px; color: var(--text-heading);">Requirements & Qualifications</h3>
+                  <ul style="list-style-type: disc; margin-left: 20px; line-height: 1.8; color: var(--text-body); margin-bottom: 24px; font-size: 0.9375rem;">
+                    <li>Enrolled in B.Sc. in CSE / Data Science with completed minimum 100 credits.</li>
+                    <li>Minimum CGPA of 3.20 or above.</li>
+                    <li>Strong fundamentals in Data Structures, Algorithms, and Object-Oriented Programming (OOP).</li>
+                    <li>Proficiency in at least one modern programming language: C++, Java, Python, or TypeScript.</li>
+                    <li>Familiarity with Relational Databases (PostgreSQL / MySQL) and Git version control.</li>
+                    <li>Excellent analytical mindset and ability to communicate effectively in a team.</li>
+                  </ul>
+
+                  <!-- Section 3: Responsibilities -->
+                  <h3 style="font-size: 1.15rem; font-weight: 800; margin-bottom: 10px; color: var(--text-heading);">Key Responsibilities</h3>
+                  <ul style="list-style-type: disc; margin-left: 20px; line-height: 1.8; color: var(--text-body); margin-bottom: 24px; font-size: 0.9375rem;">
+                    <li>Assist in designing, building, and deploying modular REST APIs and backend services.</li>
+                    <li>Write unit tests, participate in code reviews, and maintain clean software documentation.</li>
+                    <li>Investigate system bugs and implement robust bug fixes with senior engineering mentors.</li>
+                    <li>Collaborate with Frontend engineers and Product Managers in sprint planning sessions.</li>
+                    <li>Explore new architectural patterns, cloud components, and modern DevOps tools.</li>
+                  </ul>
+                </div>
+
+                <!-- Section 5: Related Jobs Section -->
+                <div style="border-top: 1px solid var(--border-light); padding-top: 24px; margin-top: 16px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                    <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--text-heading);">Related Jobs</h3>
+                    <a href="#browse-jobs" class="section-link-all">Explore More</a>
+                  </div>
+
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+                    <div style="background: var(--bg-muted); border: 1px solid var(--border-color); padding: 14px; border-radius: var(--radius-md);">
+                      <div style="font-weight: 700; font-size: 0.9375rem; color: var(--text-heading);">Frontend Developer Intern</div>
+                      <div style="font-size: 0.8125rem; color: var(--text-muted); margin: 2px 0 6px;">Tech Solution Ltd. • 📍 Dhaka • $250/mo</div>
+                      <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px;">
+                        <span class="skill-tag-badge" style="font-size: 0.7rem;">React</span>
+                        <span class="skill-tag-badge" style="font-size: 0.7rem;">TypeScript</span>
+                      </div>
+                      <a href="#job-detail" class="btn-outline btn-sm" style="width: 100%; justify-content: center; font-size: 0.75rem;">View Details</a>
+                    </div>
+
+                    <div style="background: var(--bg-muted); border: 1px solid var(--border-color); padding: 14px; border-radius: var(--radius-md);">
+                      <div style="font-weight: 700; font-size: 0.9375rem; color: var(--text-heading);">Junior Data Analyst</div>
+                      <div style="font-size: 0.8125rem; color: var(--text-muted); margin: 2px 0 6px;">BRAC IT Services • 📍 Dhaka • $350/mo</div>
+                      <div style="display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px;">
+                        <span class="skill-tag-badge" style="font-size: 0.7rem;">SQL</span>
+                        <span class="skill-tag-badge" style="font-size: 0.7rem;">PowerBI</span>
+                      </div>
+                      <a href="#job-detail" class="btn-outline btn-sm" style="width: 100%; justify-content: center; font-size: 0.75rem;">View Details</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Sidebar: Section 4 - Job Information Card -->
+              <div class="portal-card" style="align-self: flex-start; padding: 24px;">
+                <h3 style="font-size: 1.05rem; font-weight: 800; border-bottom: 1px solid var(--border-light); padding-bottom: 12px; margin-bottom: 16px; color: var(--text-heading);">
+                  📋 Job Information
+                </h3>
+                
+                <div style="display: flex; flex-direction: column; gap: 14px; font-size: 0.875rem;">
+                  <div>
+                    <span class="form-label" style="margin-bottom: 2px;">Job Type</span>
+                    <strong>Internship (On-site / Hybrid)</strong>
+                  </div>
+                  <div>
+                    <span class="form-label" style="margin-bottom: 2px;">Department</span>
+                    <strong>Computer Science & Engineering (CSE)</strong>
+                  </div>
+                  <div>
+                    <span class="form-label" style="margin-bottom: 2px;">Location</span>
+                    <strong>Dhaka, Bangladesh</strong>
+                  </div>
+                  <div>
+                    <span class="form-label" style="margin-bottom: 2px;">Salary</span>
+                    <strong style="color: var(--primary); font-size: 1rem;">$300 / month</strong>
+                  </div>
+                  <div>
+                    <span class="form-label" style="margin-bottom: 2px;">Posted Date</span>
+                    <strong>August 10, 2026</strong>
+                  </div>
+                  <div>
+                    <span class="form-label" style="margin-bottom: 2px;">Application Deadline</span>
+                    <strong style="color: var(--color-danger);">August 20, 2026 (10 Days Left)</strong>
+                  </div>
+                </div>
+
+                <div style="margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-light); display: flex; flex-direction: column; gap: 10px;">
+                  <button type="button" class="btn-primary" style="width: 100%; justify-content: center; font-weight: 700; padding: 12px;" onclick="openApplyModal('Software Engineering Intern', 'ABC Technologies')">Apply Now</button>
+                  <a href="#saved-confirm" class="btn-outline" style="width: 100%; justify-content: center;">🔖 Save for Later</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN: MULTI-STEP APPLICATION FORM (Steps 1 to 7 + Confirmation) -->
+          
+          <!-- STEP 1: PERSONAL INFORMATION -->
+          <section id="apply-step-1" class="student-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#job-detail">← Back to Job Details (Software Engineering Intern - ABC Technologies)</a>
+            </div>
+
+            <div class="page-title-row" style="margin-bottom: 16px;">
+              <div>
+                <h1 class="page-main-heading">Job Application: Software Engineering Intern</h1>
+                <p class="page-subheading">ABC Technologies • 📍 Dhaka • $300/month</p>
+              </div>
+            </div>
+
+            <!-- Visual Stepper Progress Bar -->
+            <div class="app-stepper-bar" style="margin-bottom: 24px;">
+              <a href="#apply-step-1" class="app-step-nav-item active">
+                <span class="app-step-circle">1</span>
+                <span>Personal Info</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-2" class="app-step-nav-item">
+                <span class="app-step-circle">2</span>
+                <span>Education</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-3" class="app-step-nav-item">
+                <span class="app-step-circle">3</span>
+                <span>Experience</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-4" class="app-step-nav-item">
+                <span class="app-step-circle">4</span>
+                <span>Skills</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-5" class="app-step-nav-item">
+                <span class="app-step-circle">5</span>
+                <span>Documents</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-6" class="app-step-nav-item">
+                <span class="app-step-circle">6</span>
+                <span>Additional Info</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-7" class="app-step-nav-item">
+                <span class="app-step-circle">7</span>
+                <span>Review</span>
+              </a>
+            </div>
+
+            <div class="portal-card" style="max-width: 860px; margin: 0 auto 24px;">
+              <div class="portal-card-header">
+                <div>
+                  <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--text-heading);">Step 1 — Personal Information</h2>
+                  <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 2px;">Please provide your up-to-date contact and personal details.</p>
+                </div>
+                <span class="status-pill pill-applied">Step 1 of 7</span>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label">Full Name <span style="color: var(--color-danger);">*</span></label>
+                  <input type="text" class="form-control" value="Mahfuzur Rahman" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email Address <span style="color: var(--color-danger);">*</span></label>
+                  <input type="email" class="form-control" value="mrahman211045@bscse.uiu.ac.bd" required />
+                </div>
+              </div>
+
+              <div class="form-grid-3">
+                <div class="form-group">
+                  <label class="form-label">Phone Number <span style="color: var(--color-danger);">*</span></label>
+                  <input type="tel" class="form-control" value="+880 1712-345678" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Date of Birth <span style="color: var(--color-danger);">*</span></label>
+                  <input type="date" class="form-control" value="2002-05-14" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Gender <span style="color: var(--color-danger);">*</span></label>
+                  <select class="form-control">
+                    <option selected>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                    <option>Prefer not to say</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label">Nationality <span style="color: var(--color-danger);">*</span></label>
+                  <input type="text" class="form-control" value="Bangladeshi" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Present Address <span style="color: var(--color-danger);">*</span></label>
+                  <input type="text" class="form-control" value="House 24, Road 5, Dhanmondi, Dhaka 1205" required />
+                </div>
+              </div>
+
+              <div class="form-grid-2">
+                <div class="form-group">
+                  <label class="form-label">LinkedIn Profile URL</label>
+                  <input type="url" class="form-control" value="https://linkedin.com/in/mahfuzur-rahman-uiu" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Portfolio / GitHub Website</label>
+                  <input type="url" class="form-control" value="https://mahfuz-dev.portfolio.io" />
+                </div>
+              </div>
+
+              <div class="step-footer-actions">
+                <a href="#job-detail" class="btn-outline">← Back to Job</a>
+                <a href="#apply-step-2" class="btn-primary">Save & Continue →</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- STEP 2: EDUCATION -->
+          <section id="apply-step-2" class="student-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#apply-step-1">← Back to Step 1: Personal Information</a>
+            </div>
+
+            <div class="page-title-row" style="margin-bottom: 16px;">
+              <div>
+                <h1 class="page-main-heading">Job Application: Software Engineering Intern</h1>
+                <p class="page-subheading">ABC Technologies • 📍 Dhaka • $300/month</p>
+              </div>
+            </div>
+
+            <!-- Stepper Bar -->
+            <div class="app-stepper-bar" style="margin-bottom: 24px;">
+              <a href="#apply-step-1" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Personal Info</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-2" class="app-step-nav-item active">
+                <span class="app-step-circle">2</span>
+                <span>Education</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-3" class="app-step-nav-item">
+                <span class="app-step-circle">3</span>
+                <span>Experience</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-4" class="app-step-nav-item">
+                <span class="app-step-circle">4</span>
+                <span>Skills</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-5" class="app-step-nav-item">
+                <span class="app-step-circle">5</span>
+                <span>Documents</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-6" class="app-step-nav-item">
+                <span class="app-step-circle">6</span>
+                <span>Additional Info</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-7" class="app-step-nav-item">
+                <span class="app-step-circle">7</span>
+                <span>Review</span>
+              </a>
+            </div>
+
+            <div class="portal-card" style="max-width: 860px; margin: 0 auto 24px;">
+              <div class="portal-card-header">
+                <div>
+                  <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--text-heading);">Step 2 — Education</h2>
+                  <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 2px;">Enter your university and educational background details.</p>
+                </div>
+                <span class="status-pill pill-applied">Step 2 of 7</span>
+              </div>
+
+              <!-- Education Block 1 (Current University) -->
+              <div style="background: var(--bg-muted); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+                  <strong style="color: var(--text-heading); font-size: 0.9375rem;">🎓 Primary Degree (Undergraduate)</strong>
+                  <span class="status-pill pill-verified" style="font-size: 0.7rem;">Verified UIU Student Record</span>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label">University <span style="color: var(--color-danger);">*</span></label>
+                    <input type="text" class="form-control" value="United International University (UIU)" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Department <span style="color: var(--color-danger);">*</span></label>
+                    <input type="text" class="form-control" value="Computer Science and Engineering (CSE)" required />
+                  </div>
+                </div>
+
+                <div class="form-grid-3">
+                  <div class="form-group">
+                    <label class="form-label">Current Level <span style="color: var(--color-danger);">*</span></label>
+                    <select class="form-control">
+                      <option selected>Undergraduate (Senior / 4th Year)</option>
+                      <option>Undergraduate (3rd Year)</option>
+                      <option>Undergraduate (2nd Year)</option>
+                      <option>Graduate / Masters</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">CGPA <span style="color: var(--color-danger);">*</span></label>
+                    <input type="text" class="form-control" value="3.84 / 4.00" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Graduation Year <span style="color: var(--color-danger);">*</span></label>
+                    <input type="number" class="form-control" value="2026" required />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Education Block 2 (College / Higher Secondary) -->
+              <div style="background: var(--bg-surface); border: 1px dashed var(--border-color); border-radius: var(--radius-md); padding: 16px 20px; margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                  <strong style="color: var(--text-body); font-size: 0.875rem;">🏫 Higher Secondary Certificate (HSC)</strong>
+                  <a href="#" style="font-size: 0.75rem; color: var(--color-danger); text-decoration: none;">Remove</a>
+                </div>
+                <div style="font-size: 0.8125rem; color: var(--text-muted);">
+                  <strong>Notre Dame College, Dhaka</strong> • Science Division • GPA: 5.00 / 5.00 • Passed: 2021
+                </div>
+              </div>
+
+              <!-- + Add Another Education Button -->
+              <div style="margin-bottom: 24px;">
+                <button type="button" class="btn-outline" style="border-style: dashed; width: 100%; justify-content: center; font-weight: 700; color: var(--primary);">
+                  + Add Another Education
+                </button>
+              </div>
+
+              <div class="step-footer-actions">
+                <a href="#apply-step-1" class="btn-outline">← Previous</a>
+                <a href="#apply-step-3" class="btn-primary">Save & Continue →</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- STEP 3: EXPERIENCE -->
+          <section id="apply-step-3" class="student-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#apply-step-2">← Back to Step 2: Education</a>
+            </div>
+
+            <div class="page-title-row" style="margin-bottom: 16px;">
+              <div>
+                <h1 class="page-main-heading">Job Application: Software Engineering Intern</h1>
+                <p class="page-subheading">ABC Technologies • 📍 Dhaka • $300/month</p>
+              </div>
+            </div>
+
+            <!-- Stepper Bar -->
+            <div class="app-stepper-bar" style="margin-bottom: 24px;">
+              <a href="#apply-step-1" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Personal Info</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-2" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Education</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-3" class="app-step-nav-item active">
+                <span class="app-step-circle">3</span>
+                <span>Experience</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-4" class="app-step-nav-item">
+                <span class="app-step-circle">4</span>
+                <span>Skills</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-5" class="app-step-nav-item">
+                <span class="app-step-circle">5</span>
+                <span>Documents</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-6" class="app-step-nav-item">
+                <span class="app-step-circle">6</span>
+                <span>Additional Info</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-7" class="app-step-nav-item">
+                <span class="app-step-circle">7</span>
+                <span>Review</span>
+              </a>
+            </div>
+
+            <div class="portal-card" style="max-width: 860px; margin: 0 auto 24px;">
+              <div class="portal-card-header">
+                <div>
+                  <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--text-heading);">Step 3 — Experience</h2>
+                  <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 2px;">Include prior internships, industrial attachments, or project assistantships.</p>
+                </div>
+                <span class="status-pill pill-applied">Step 3 of 7</span>
+              </div>
+
+              <!-- Experience Entry 1 -->
+              <div style="background: var(--bg-muted); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 20px; margin-bottom: 20px;">
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label">Company <span style="color: var(--color-danger);">*</span></label>
+                    <input type="text" class="form-control" value="TechSprint Innovations" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Position <span style="color: var(--color-danger);">*</span></label>
+                    <input type="text" class="form-control" value="Junior Software Engineering Trainee" required />
+                  </div>
+                </div>
+
+                <div class="form-grid-3">
+                  <div class="form-group">
+                    <label class="form-label">Employment Type <span style="color: var(--color-danger);">*</span></label>
+                    <select class="form-control">
+                      <option selected>Internship</option>
+                      <option>Part-time</option>
+                      <option>Full-time</option>
+                      <option>Contract / Freelance</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Start Date <span style="color: var(--color-danger);">*</span></label>
+                    <input type="text" class="form-control" value="Jan 2026" required />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">End Date <span style="color: var(--color-danger);">*</span></label>
+                    <input type="text" class="form-control" value="Present (Ongoing)" required />
+                  </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 0;">
+                  <label class="form-label">Responsibilities & Key Contributions <span style="color: var(--color-danger);">*</span></label>
+                  <textarea class="form-control" style="min-height: 90px;">Assisted senior developers in building backend REST APIs using Node.js & PostgreSQL. Optimized SQL queries, handled asynchronous queues, and participated in sprint reviews.</textarea>
+                </div>
+              </div>
+
+              <!-- + Add Another Experience Button -->
+              <div style="margin-bottom: 24px;">
+                <button type="button" class="btn-outline" style="border-style: dashed; width: 100%; justify-content: center; font-weight: 700; color: var(--primary);">
+                  + Add Another Experience
+                </button>
+              </div>
+
+              <div class="step-footer-actions">
+                <a href="#apply-step-2" class="btn-outline">← Previous</a>
+                <a href="#apply-step-4" class="btn-primary">Save & Continue →</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- STEP 4: SKILLS -->
+          <section id="apply-step-4" class="student-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#apply-step-3">← Back to Step 3: Experience</a>
+            </div>
+
+            <div class="page-title-row" style="margin-bottom: 16px;">
+              <div>
+                <h1 class="page-main-heading">Job Application: Software Engineering Intern</h1>
+                <p class="page-subheading">ABC Technologies • 📍 Dhaka • $300/month</p>
+              </div>
+            </div>
+
+            <!-- Stepper Bar -->
+            <div class="app-stepper-bar" style="margin-bottom: 24px;">
+              <a href="#apply-step-1" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Personal Info</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-2" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Education</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-3" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Experience</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-4" class="app-step-nav-item active">
+                <span class="app-step-circle">4</span>
+                <span>Skills</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-5" class="app-step-nav-item">
+                <span class="app-step-circle">5</span>
+                <span>Documents</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-6" class="app-step-nav-item">
+                <span class="app-step-circle">6</span>
+                <span>Additional Info</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-7" class="app-step-nav-item">
+                <span class="app-step-circle">7</span>
+                <span>Review</span>
+              </a>
+            </div>
+
+            <div class="portal-card" style="max-width: 860px; margin: 0 auto 24px;">
+              <div class="portal-card-header">
+                <div>
+                  <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--text-heading);">Step 4 — Skills</h2>
+                  <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 2px;">Highlight your technical skills and proficiency areas relevant to this role.</p>
+                </div>
+                <span class="status-pill pill-applied">Step 4 of 7</span>
+              </div>
+
+              <div style="margin-bottom: 24px;">
+                <label class="form-label">Core Selected Skills (Click tags to toggle or remove)</label>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px;">
+                  <span class="skill-tag-badge skill-tag-active" style="padding: 8px 16px; font-size: 0.9375rem; cursor: pointer;">
+                    ⚛️ React.js <span style="font-size: 0.75rem; margin-left: 4px;">✕</span>
+                  </span>
+                  <span class="skill-tag-badge skill-tag-active" style="padding: 8px 16px; font-size: 0.9375rem; cursor: pointer;">
+                    📘 TypeScript <span style="font-size: 0.75rem; margin-left: 4px;">✕</span>
+                  </span>
+                  <span class="skill-tag-badge skill-tag-active" style="padding: 8px 16px; font-size: 0.9375rem; cursor: pointer;">
+                    📜 JavaScript <span style="font-size: 0.75rem; margin-left: 4px;">✕</span>
+                  </span>
+                  <span class="skill-tag-badge skill-tag-active" style="padding: 8px 16px; font-size: 0.9375rem; cursor: pointer;">
+                    ⚡ C++ <span style="font-size: 0.75rem; margin-left: 4px;">✕</span>
+                  </span>
+                  <span class="skill-tag-badge skill-tag-active" style="padding: 8px 16px; font-size: 0.9375rem; cursor: pointer;">
+                    🐍 Python <span style="font-size: 0.75rem; margin-left: 4px;">✕</span>
+                  </span>
+                  <span class="skill-tag-badge skill-tag-active" style="padding: 8px 16px; font-size: 0.9375rem; cursor: pointer;">
+                    📊 Data Analysis <span style="font-size: 0.75rem; margin-left: 4px;">✕</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Suggested & Additional Skills -->
+              <div style="margin-bottom: 24px;">
+                <label class="form-label">Recommended Additional Skills for this Role</label>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px;">
+                  <button type="button" class="btn-outline btn-sm">+ Node.js</button>
+                  <button type="button" class="btn-outline btn-sm">+ PostgreSQL</button>
+                  <button type="button" class="btn-outline btn-sm">+ Git & GitHub</button>
+                  <button type="button" class="btn-outline btn-sm">+ RESTful APIs</button>
+                  <button type="button" class="btn-outline btn-sm">+ Docker</button>
+                  <button type="button" class="btn-outline btn-sm">+ Algorithms & DSA</button>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Add Custom Skill Tag</label>
+                <div style="display: flex; gap: 10px;">
+                  <input type="text" class="form-control" placeholder="e.g. Next.js, Redux, Express..." />
+                  <button type="button" class="btn-primary" style="white-space: nowrap;">Add Skill</button>
+                </div>
+              </div>
+
+              <div class="step-footer-actions">
+                <a href="#apply-step-3" class="btn-outline">← Previous</a>
+                <a href="#apply-step-5" class="btn-primary">Save & Continue →</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- STEP 5: DOCUMENTS -->
+          <section id="apply-step-5" class="student-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#apply-step-4">← Back to Step 4: Skills</a>
+            </div>
+
+            <div class="page-title-row" style="margin-bottom: 16px;">
+              <div>
+                <h1 class="page-main-heading">Job Application: Software Engineering Intern</h1>
+                <p class="page-subheading">ABC Technologies • 📍 Dhaka • $300/month</p>
+              </div>
+            </div>
+
+            <!-- Stepper Bar -->
+            <div class="app-stepper-bar" style="margin-bottom: 24px;">
+              <a href="#apply-step-1" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Personal Info</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-2" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Education</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-3" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Experience</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-4" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Skills</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-5" class="app-step-nav-item active">
+                <span class="app-step-circle">5</span>
+                <span>Documents</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-6" class="app-step-nav-item">
+                <span class="app-step-circle">6</span>
+                <span>Additional Info</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-7" class="app-step-nav-item">
+                <span class="app-step-circle">7</span>
+                <span>Review</span>
+              </a>
+            </div>
+
+            <div class="portal-card" style="max-width: 860px; margin: 0 auto 24px;">
+              <div class="portal-card-header">
+                <div>
+                  <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--text-heading);">Step 5 — Documents</h2>
+                  <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 2px;">Upload your Resume, Cover Letter, Portfolio, and Academic Certificates.</p>
+                </div>
+                <span class="status-pill pill-applied">Step 5 of 7</span>
+              </div>
+
+              <!-- Upload Dropzone UI -->
+              <div class="doc-upload-dropzone">
+                <div style="font-size: 2.2rem; margin-bottom: 8px;">📂</div>
+                <strong style="font-size: 1rem; color: var(--text-heading); display: block; margin-bottom: 4px;">
+                  Drag & Drop your documents here, or <span style="color: var(--primary); text-decoration: underline;">Browse Files</span>
+                </strong>
+                <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 12px;">
+                  Supports PDF, DOCX, PNG, JPG (Max file size: 10 MB per file)
+                </p>
+                <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+                  <span class="skill-tag-badge">📄 Resume</span>
+                  <span class="skill-tag-badge">✉️ Cover Letter</span>
+                  <span class="skill-tag-badge">🌐 Portfolio</span>
+                  <span class="skill-tag-badge">🏅 Certificates</span>
+                </div>
+              </div>
+
+              <!-- Uploaded Files Cards List -->
+              <h3 style="font-size: 0.9375rem; font-weight: 800; margin: 20px 0 12px; color: var(--text-heading);">
+                Uploaded Files (4 Attached)
+              </h3>
+
+              <!-- File 1: Resume -->
+              <div class="uploaded-doc-item">
+                <div class="uploaded-doc-info">
+                  <div style="font-size: 1.8rem; background: #FFF7ED; padding: 6px 10px; border-radius: var(--radius-sm);">📄</div>
+                  <div>
+                    <strong style="font-size: 0.875rem; color: var(--text-heading); display: block;">Mahfuzur_Rahman_Resume_ATS_2026.pdf</strong>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; gap: 10px; margin-top: 2px;">
+                      <span>Category: <strong>Resume</strong></span>
+                      <span>•</span>
+                      <span>Size: <strong>1.2 MB</strong></span>
+                      <span>•</span>
+                      <span style="color: #059669; font-weight: 700;">✓ ATS Score: 96%</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="uploaded-doc-actions">
+                  <a href="#export-resume-modal" class="btn-outline btn-sm">👁️ Preview</a>
+                  <button type="button" class="btn-outline btn-sm">🔄 Replace</button>
+                  <button type="button" class="btn-outline btn-sm" style="color: var(--color-danger); border-color: #FECACA;">🗑️ Delete</button>
+                </div>
+              </div>
+
+              <!-- File 2: Cover Letter -->
+              <div class="uploaded-doc-item">
+                <div class="uploaded-doc-info">
+                  <div style="font-size: 1.8rem; background: #E0F2FE; padding: 6px 10px; border-radius: var(--radius-sm);">✉️</div>
+                  <div>
+                    <strong style="font-size: 0.875rem; color: var(--text-heading); display: block;">ABC_Tech_Internship_CoverLetter.pdf</strong>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; gap: 10px; margin-top: 2px;">
+                      <span>Category: <strong>Cover Letter</strong></span>
+                      <span>•</span>
+                      <span>Size: <strong>450 KB</strong></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="uploaded-doc-actions">
+                  <a href="#export-resume-modal" class="btn-outline btn-sm">👁️ Preview</a>
+                  <button type="button" class="btn-outline btn-sm">🔄 Replace</button>
+                  <button type="button" class="btn-outline btn-sm" style="color: var(--color-danger); border-color: #FECACA;">🗑️ Delete</button>
+                </div>
+              </div>
+
+              <!-- File 3: Portfolio -->
+              <div class="uploaded-doc-item">
+                <div class="uploaded-doc-info">
+                  <div style="font-size: 1.8rem; background: #EDE9FE; padding: 6px 10px; border-radius: var(--radius-sm);">🌐</div>
+                  <div>
+                    <strong style="font-size: 0.875rem; color: var(--text-heading); display: block;">Mahfuz_UIU_Capstone_Portfolio.pdf</strong>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; gap: 10px; margin-top: 2px;">
+                      <span>Category: <strong>Portfolio</strong></span>
+                      <span>•</span>
+                      <span>Size: <strong>3.8 MB</strong></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="uploaded-doc-actions">
+                  <a href="#export-resume-modal" class="btn-outline btn-sm">👁️ Preview</a>
+                  <button type="button" class="btn-outline btn-sm">🔄 Replace</button>
+                  <button type="button" class="btn-outline btn-sm" style="color: var(--color-danger); border-color: #FECACA;">🗑️ Delete</button>
+                </div>
+              </div>
+
+              <!-- File 4: Certificate -->
+              <div class="uploaded-doc-item">
+                <div class="uploaded-doc-info">
+                  <div style="font-size: 1.8rem; background: #FEF3C7; padding: 6px 10px; border-radius: var(--radius-sm);">🏅</div>
+                  <div>
+                    <strong style="font-size: 0.875rem; color: var(--text-heading); display: block;">HackerRank_Problem_Solving_Gold_Certificate.pdf</strong>
+                    <div style="font-size: 0.75rem; color: var(--text-muted); display: flex; gap: 10px; margin-top: 2px;">
+                      <span>Category: <strong>Certificates</strong></span>
+                      <span>•</span>
+                      <span>Size: <strong>820 KB</strong></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="uploaded-doc-actions">
+                  <a href="#export-resume-modal" class="btn-outline btn-sm">👁️ Preview</a>
+                  <button type="button" class="btn-outline btn-sm">🔄 Replace</button>
+                  <button type="button" class="btn-outline btn-sm" style="color: var(--color-danger); border-color: #FECACA;">🗑️ Delete</button>
+                </div>
+              </div>
+
+              <div class="step-footer-actions">
+                <a href="#apply-step-4" class="btn-outline">← Previous</a>
+                <a href="#apply-step-6" class="btn-primary">Save & Continue →</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- STEP 6: ADDITIONAL INFORMATION -->
+          <section id="apply-step-6" class="student-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#apply-step-5">← Back to Step 5: Documents</a>
+            </div>
+
+            <div class="page-title-row" style="margin-bottom: 16px;">
+              <div>
+                <h1 class="page-main-heading">Job Application: Software Engineering Intern</h1>
+                <p class="page-subheading">ABC Technologies • 📍 Dhaka • $300/month</p>
+              </div>
+            </div>
+
+            <!-- Stepper Bar -->
+            <div class="app-stepper-bar" style="margin-bottom: 24px;">
+              <a href="#apply-step-1" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Personal Info</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-2" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Education</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-3" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Experience</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-4" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Skills</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-5" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Documents</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-6" class="app-step-nav-item active">
+                <span class="app-step-circle">6</span>
+                <span>Additional Info</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-7" class="app-step-nav-item">
+                <span class="app-step-circle">7</span>
+                <span>Review</span>
+              </a>
+            </div>
+
+            <div class="portal-card" style="max-width: 860px; margin: 0 auto 24px;">
+              <div class="portal-card-header">
+                <div>
+                  <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--text-heading);">Step 6 — Additional Information</h2>
+                  <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 2px;">Provide salary expectations, availability date, and your cover note.</p>
+                </div>
+                <span class="status-pill pill-applied">Step 6 of 7</span>
+              </div>
+
+              <div class="form-grid-3">
+                <div class="form-group">
+                  <label class="form-label">How did you hear about this job? <span style="color: var(--color-danger);">*</span></label>
+                  <select class="form-control">
+                    <option selected>UIU Placement Cell (CCSA Portal)</option>
+                    <option>UIU Career Fair 2026</option>
+                    <option>LinkedIn Job Board</option>
+                    <option>University Alumni Referral</option>
+                    <option>Company Website</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Expected Salary ($/month) <span style="color: var(--color-danger);">*</span></label>
+                  <input type="text" class="form-control" value="$300 / month" required />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Available From <span style="color: var(--color-danger);">*</span></label>
+                  <input type="text" class="form-control" value="Immediately (Sep 01, 2026)" required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Cover Letter Note to Hiring Manager <span style="color: var(--color-danger);">*</span></label>
+                <textarea class="form-control" style="min-height: 140px;" placeholder="Write a short summary about your passion and suitability for ABC Technologies...">Dear Hiring Team at ABC Technologies,
+
+I am a final-year B.Sc. in CSE student at United International University with a CGPA of 3.84. I have strong algorithmic problem-solving foundations in C++ and hands-on full-stack development experience with React, TypeScript, and Node.js. 
+
+I am eager to contribute to ABC Technologies' high-scale engineering team during this internship and look forward to demonstrating my dedication.
+
+Sincerely,
+Mahfuzur Rahman</textarea>
+              </div>
+
+              <div class="step-footer-actions">
+                <a href="#apply-step-5" class="btn-outline">← Previous</a>
+                <a href="#apply-step-7" class="btn-primary">Save & Continue to Review →</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- STEP 7: REVIEW COMPLETE APPLICATION -->
+          <section id="apply-step-7" class="student-view-pane">
+            <div class="breadcrumbs-trail" style="margin-bottom: 12px;">
+              <a href="#apply-step-6">← Back to Step 6: Additional Information</a>
+            </div>
+
+            <div class="page-title-row" style="margin-bottom: 16px;">
+              <div>
+                <h1 class="page-main-heading">Job Application: Software Engineering Intern</h1>
+                <p class="page-subheading">ABC Technologies • 📍 Dhaka • $300/month</p>
+              </div>
+            </div>
+
+            <!-- Stepper Bar -->
+            <div class="app-stepper-bar" style="margin-bottom: 24px;">
+              <a href="#apply-step-1" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Personal Info</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-2" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Education</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-3" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Experience</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-4" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Skills</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-5" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Documents</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-6" class="app-step-nav-item completed">
+                <span class="app-step-circle">✓</span>
+                <span>Additional Info</span>
+              </a>
+              <span class="app-step-separator">›</span>
+              <a href="#apply-step-7" class="app-step-nav-item active">
+                <span class="app-step-circle">7</span>
+                <span>Review</span>
+              </a>
+            </div>
+
+            <div class="portal-card" style="max-width: 860px; margin: 0 auto 24px;">
+              <div class="portal-card-header">
+                <div>
+                  <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--text-heading);">Step 7 — Application Summary & Review</h2>
+                  <p style="font-size: 0.8125rem; color: var(--text-muted); margin-top: 2px;">Please carefully review all details before final submission.</p>
+                </div>
+                <span class="status-pill pill-applied">Step 7 of 7</span>
+              </div>
+
+              <!-- Summary Section 1: Personal Info -->
+              <div class="review-card-block">
+                <div class="review-card-title-row">
+                  <strong style="color: var(--text-heading); font-size: 0.9375rem;">👤 1. Personal Information</strong>
+                  <a href="#apply-step-1" style="font-size: 0.75rem; color: var(--primary); font-weight: 700; text-decoration: none;">Edit Details ✏️</a>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; font-size: 0.8125rem;">
+                  <div><span style="color: var(--text-muted);">Name:</span> <strong>Mahfuzur Rahman</strong></div>
+                  <div><span style="color: var(--text-muted);">Email:</span> <strong>mrahman211045@bscse.uiu.ac.bd</strong></div>
+                  <div><span style="color: var(--text-muted);">Phone:</span> <strong>+880 1712-345678</strong></div>
+                  <div><span style="color: var(--text-muted);">Date of Birth:</span> <strong>May 14, 2002</strong></div>
+                  <div><span style="color: var(--text-muted);">Gender:</span> <strong>Male</strong></div>
+                  <div><span style="color: var(--text-muted);">Nationality:</span> <strong>Bangladeshi</strong></div>
+                  <div style="grid-column: span 3;"><span style="color: var(--text-muted);">Address:</span> <strong>House 24, Road 5, Dhanmondi, Dhaka 1205</strong></div>
+                  <div><span style="color: var(--text-muted);">LinkedIn:</span> <a href="#" style="color: var(--primary);">linkedin.com/in/mahfuzur-rahman-uiu</a></div>
+                  <div><span style="color: var(--text-muted);">Portfolio:</span> <a href="#" style="color: var(--primary);">mahfuz-dev.portfolio.io</a></div>
+                </div>
+              </div>
+
+              <!-- Summary Section 2: Education -->
+              <div class="review-card-block">
+                <div class="review-card-title-row">
+                  <strong style="color: var(--text-heading); font-size: 0.9375rem;">🎓 2. Education</strong>
+                  <a href="#apply-step-2" style="font-size: 0.75rem; color: var(--primary); font-weight: 700; text-decoration: none;">Edit Education ✏️</a>
+                </div>
+                <div style="font-size: 0.8125rem; line-height: 1.6;">
+                  <strong>United International University (UIU)</strong> — B.Sc. in Computer Science and Engineering (CSE)<br />
+                  <span style="color: var(--text-muted);">Current Level: Senior / 4th Year • CGPA: <strong>3.84 / 4.00</strong> • Expected Graduation: <strong>2026</strong></span>
+                </div>
+              </div>
+
+              <!-- Summary Section 3: Experience -->
+              <div class="review-card-block">
+                <div class="review-card-title-row">
+                  <strong style="color: var(--text-heading); font-size: 0.9375rem;">💼 3. Experience</strong>
+                  <a href="#apply-step-3" style="font-size: 0.75rem; color: var(--primary); font-weight: 700; text-decoration: none;">Edit Experience ✏️</a>
+                </div>
+                <div style="font-size: 0.8125rem; line-height: 1.6;">
+                  <strong>TechSprint Innovations</strong> — Junior Software Engineering Trainee (Internship)<br />
+                  <span style="color: var(--text-muted);">Duration: Jan 2026 – Present • Stack: Node.js, PostgreSQL, REST APIs</span>
+                </div>
+              </div>
+
+              <!-- Summary Section 4: Skills -->
+              <div class="review-card-block">
+                <div class="review-card-title-row">
+                  <strong style="color: var(--text-heading); font-size: 0.9375rem;">🛠️ 4. Selected Skills</strong>
+                  <a href="#apply-step-4" style="font-size: 0.75rem; color: var(--primary); font-weight: 700; text-decoration: none;">Edit Skills ✏️</a>
+                </div>
+                <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                  <span class="skill-tag-badge">React.js</span>
+                  <span class="skill-tag-badge">TypeScript</span>
+                  <span class="skill-tag-badge">JavaScript</span>
+                  <span class="skill-tag-badge">C++</span>
+                  <span class="skill-tag-badge">Python</span>
+                  <span class="skill-tag-badge">Data Analysis</span>
+                </div>
+              </div>
+
+              <!-- Summary Section 5: Documents -->
+              <div class="review-card-block">
+                <div class="review-card-title-row">
+                  <strong style="color: var(--text-heading); font-size: 0.9375rem;">📎 5. Uploaded Documents</strong>
+                  <a href="#apply-step-5" style="font-size: 0.75rem; color: var(--primary); font-weight: 700; text-decoration: none;">Edit Documents ✏️</a>
+                </div>
+                <div style="font-size: 0.8125rem; display: flex; flex-direction: column; gap: 6px;">
+                  <div>📄 <strong>Mahfuzur_Rahman_Resume_ATS_2026.pdf</strong> (1.2 MB)</div>
+                  <div>✉️ <strong>ABC_Tech_Internship_CoverLetter.pdf</strong> (450 KB)</div>
+                  <div>🌐 <strong>Mahfuz_UIU_Capstone_Portfolio.pdf</strong> (3.8 MB)</div>
+                  <div>🏅 <strong>HackerRank_Problem_Solving_Gold_Certificate.pdf</strong> (820 KB)</div>
+                </div>
+              </div>
+
+              <!-- Summary Section 6: Additional Info -->
+              <div class="review-card-block" style="margin-bottom: 24px;">
+                <div class="review-card-title-row">
+                  <strong style="color: var(--text-heading); font-size: 0.9375rem;">ℹ️ 6. Additional Details</strong>
+                  <a href="#apply-step-6" style="font-size: 0.75rem; color: var(--primary); font-weight: 700; text-decoration: none;">Edit Info ✏️</a>
+                </div>
+                <div style="font-size: 0.8125rem; line-height: 1.6;">
+                  <div>Source: <strong>UIU Placement Cell (CCSA Portal)</strong></div>
+                  <div>Expected Salary: <strong style="color: var(--primary);">$300 / month</strong></div>
+                  <div>Available From: <strong>Immediately (Sep 01, 2026)</strong></div>
+                </div>
+              </div>
+
+              <!-- Confirmation Checkbox -->
+              <div style="background: #FFF7ED; padding: 14px 18px; border-radius: var(--radius-md); border: 1px solid var(--border-accent); margin-bottom: 24px;">
+                <label class="checkbox-item-label" style="margin-bottom: 0;">
+                  <input type="checkbox" class="custom-checkbox" checked />
+                  <span style="font-size: 0.8125rem; color: #9A3412;">
+                    I certify that all information submitted is true, complete, and verifiable by UIU Center for Career Services and ABC Technologies.
+                  </span>
+                </label>
+              </div>
+
+              <!-- Stepper Action Buttons -->
+              <div class="step-footer-actions">
+                <a href="#apply-step-6" class="btn-outline">← Previous</a>
+                <div style="display: flex; gap: 10px;">
+                  <button type="button" class="btn-outline">Save Draft</button>
+                  <a href="#apply-confirmation" class="btn-primary" style="padding: 12px 24px; font-size: 1rem; font-weight: 800;">
+                    🚀 Submit Application
+                  </a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- STATIC CONFIRMATION STATE -->
+          <section id="apply-confirmation" class="student-view-pane">
+            <div class="portal-card" style="max-width: 680px; margin: 20px auto; text-align: center; padding: 40px 32px;">
+              <div style="width: 72px; height: 72px; background: #D1FAE5; color: #059669; border-radius: var(--radius-full); display: inline-flex; align-items: center; justify-content: center; font-size: 2.5rem; margin-bottom: 16px;">
+                ✓
+              </div>
+              <h1 style="font-size: 1.75rem; font-weight: 900; color: var(--text-heading); margin-bottom: 8px;">
+                Application submitted successfully.
+              </h1>
+              <p style="color: var(--text-body); font-size: 0.9375rem; margin-bottom: 24px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+                Your application for <strong>Software Engineering Intern</strong> has been delivered to the hiring team at <strong>ABC Technologies</strong>.
+              </p>
+
+              <!-- Application Receipt Ticket -->
+              <div style="background: var(--bg-muted); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 20px; text-align: left; margin-bottom: 28px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-light); padding-bottom: 12px; margin-bottom: 14px;">
+                  <div>
+                    <span style="font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Application ID</span>
+                    <div style="font-family: monospace; font-weight: 800; font-size: 1.1rem; color: var(--primary);">UIU-APP-2026-8842</div>
+                  </div>
+                  <span class="status-pill status-applied">Status: Under Review</span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.8125rem;">
+                  <div><span style="color: var(--text-muted);">Company:</span> <strong>ABC Technologies Ltd.</strong></div>
+                  <div><span style="color: var(--text-muted);">Applied Date:</span> <strong>August 31, 2026</strong></div>
+                  <div><span style="color: var(--text-muted);">Applicant:</span> <strong>Mahfuzur Rahman (011211045)</strong></div>
+                  <div><span style="color: var(--text-muted);">Department:</span> <strong>B.Sc. in CSE (UIU)</strong></div>
+                </div>
+
+                <div style="margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border-color); font-size: 0.75rem; color: var(--text-muted);">
+                  ⏱️ <strong>What happens next:</strong> Recruiter will review your qualifications within 3–5 working days. You will receive real-time notifications on your portal dashboard and university email.
+                </div>
+              </div>
+
+              <!-- Quick Next Step Actions -->
+              <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+                <a href="#my-applications" class="btn-primary" style="padding: 12px 24px; font-weight: 700;">
+                  📋 View in My Applications
+                </a>
+                <a href="#browse-jobs" class="btn-outline" style="padding: 12px 20px;">
+                  🔍 Browse More Jobs
+                </a>
+                <a href="#export-resume-modal" class="btn-outline" style="padding: 12px 20px;">
+                  📥 Download Copy
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 5: RESUME BUILDER (Page 6) -->
+          <section id="resume-builder" class="student-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Resume Builder <span style="font-size: 0.8125rem; background: var(--bg-muted); padding: 3px 8px; border-radius: var(--radius-sm); font-weight: 600;">Step 4 of 4 • Templates</span></h1>
+                <p class="page-subheading">Choose a layout, fill in your profile data, then export your resume as PDF.</p>
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button class="btn-outline">Save Draft</button>
+                <a href="#export-resume-modal" class="btn-primary">📥 Save & Export PDF</a>
+              </div>
+            </div>
+
+            <div class="resume-builder-layout">
+              <!-- Templates Picker (Page 6) -->
+              <div class="portal-card">
+                <div class="portal-card-header">
+                  <h3 class="card-title-h3">Resume Templates</h3>
+                  <span style="font-size: 0.8125rem; color: var(--text-muted);">4 styles</span>
+                </div>
+
+                <div class="template-card-picker selected">
+                  <div class="template-card-header">
+                    <span>Classic Academic</span>
+                    <span style="color: var(--primary); font-size: 0.75rem;">Selected ✓</span>
+                  </div>
+                  <div style="height: 60px; background: #FFF7ED; border-radius: 4px; border: 1px dashed var(--border-accent); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--primary-dark);">
+                    📑 Standard University Format
+                  </div>
+                </div>
+
+                <div class="template-card-picker">
+                  <div class="template-card-header">
+                    <span>Modern Split</span>
+                    <span style="color: var(--text-muted); font-size: 0.75rem;">Select</span>
+                  </div>
+                  <div style="height: 60px; background: #F1F5F9; border-radius: 4px; border: 1px dashed var(--border-color); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--text-muted);">
+                    📊 Two-Column Sidebar
+                  </div>
+                </div>
+
+                <div class="template-card-picker">
+                  <div class="template-card-header">
+                    <span>Minimal Clean</span>
+                    <span style="color: var(--text-muted); font-size: 0.75rem;">Select</span>
+                  </div>
+                  <div style="height: 60px; background: #F8FAFC; border-radius: 4px; border: 1px dashed var(--border-color); display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--text-muted);">
+                    📝 Simple Monochrome ATS
+                  </div>
+                </div>
+
+                <div class="template-card-picker">
+                  <div class="template-card-header">
+                    <span>Tech Forward</span>
+                    <span style="color: var(--text-muted); font-size: 0.75rem;">Select</span>
+                  </div>
+                  <div style="height: 60px; background: #0F172A; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #38BDF8;">
+                    💻 GitHub / Dev Stack Focus
+                  </div>
+                </div>
+
+                <div style="background: #FFF7ED; padding: 12px; border-radius: var(--radius-md); font-size: 0.8125rem; color: #9A3412; margin-top: 16px;">
+                  💡 <strong>Tip:</strong> All UIU templates are ATS-friendly and vetted by top campus recruiters.
+                </div>
+              </div>
+
+              <!-- Profile Data Form (Page 6) -->
+              <div class="portal-card">
+                <div class="portal-card-header">
+                  <h3 class="card-title-h3">Profile Data</h3>
+                  <span style="font-size: 0.8125rem; color: var(--text-muted);">Using: Classic Academic</span>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" value="Priya Sharma" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Degree & Year</label>
+                    <input type="text" class="form-control" value="B.Sc Computer Science & Engineering, 2026" />
+                  </div>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label class="form-label">Academic Standing (CGPA out of 4.00)</label>
+                    <input type="text" class="form-control" value="3.82 / 4.00" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">University Email</label>
+                    <input type="email" class="form-control" value="priya.sharma@bscse.uiu.ac.bd" />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Skills (Press Enter to add)</label>
+                  <div class="skills-tags-container" style="margin-bottom: 8px;">
+                    <span class="skill-tag-badge skill-tag-active">React.js ✕</span>
+                    <span class="skill-tag-badge skill-tag-active">Python ✕</span>
+                    <span class="skill-tag-badge skill-tag-active">SQL ✕</span>
+                    <span class="skill-tag-badge skill-tag-active">Data Structures ✕</span>
+                    <span class="skill-tag-badge">+ Add more...</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Projects (One project per paragraph)</label>
+                  <textarea class="form-control" style="height: 120px;">Library Management System — Django + PostgreSQL, 500+ concurrent users, deployed on AWS EC2.
+
+AI Study Planner — NLP-based semester scheduler, final year project, 92% on-time completion rate.</textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Certifications</label>
+                  <div class="skills-tags-container">
+                    <span class="skill-tag-badge">AWS Cloud Practitioner ✕</span>
+                    <span class="skill-tag-badge">Google Analytics ✕</span>
+                    <span class="skill-tag-badge">+ Add more...</span>
+                  </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-light); padding-top: 20px; margin-top: 20px;">
+                  <span style="font-size: 0.8125rem; color: var(--text-muted);">Data saved securely to your university account.</span>
+                  <a href="#export-resume-modal" class="btn-primary">📥 Save & Export PDF</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 6: COMPANIES DIRECTORY (Page 7 & 10) -->
+          <section id="companies" class="student-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Partner Companies</h1>
+                <p class="page-subheading">Explore accredited companies actively hiring from UIU.</p>
+              </div>
+            </div>
+
+            <!-- Stats (Page 10) -->
+            <div class="metrics-grid-4" style="margin-bottom: 24px;">
+              <div class="metric-stat-card">
+                <div class="stat-content-box">
+                  <div class="stat-label-text">Partner Companies</div>
+                  <div class="stat-huge-number">48</div>
+                </div>
+                <div class="stat-icon-wrapper stat-icon-orange">🏢</div>
+              </div>
+              <div class="metric-stat-card">
+                <div class="stat-content-box">
+                  <div class="stat-label-text">Open Positions</div>
+                  <div class="stat-huge-number">312</div>
+                </div>
+                <div class="stat-icon-wrapper stat-icon-blue">💼</div>
+              </div>
+              <div class="metric-stat-card">
+                <div class="stat-content-box">
+                  <div class="stat-label-text">New This Month</div>
+                  <div class="stat-huge-number">12</div>
+                </div>
+                <div class="stat-icon-wrapper stat-icon-green">✨</div>
+              </div>
+              <div class="metric-stat-card">
+                <div class="stat-content-box">
+                  <div class="stat-label-text">Avg Placement Rate</div>
+                  <div class="stat-huge-number">88%</div>
+                </div>
+                <div class="stat-icon-wrapper stat-icon-purple">📈</div>
+              </div>
+            </div>
+
+            <!-- Companies Grid (Page 7 & 10) -->
+            <div class="featured-companies-grid">
+              <div class="landing-company-card">
+                <div class="comp-logo-circle" style="background: #4285F4;">G</div>
+                <h3 class="comp-name-h4">Google LLC</h3>
+                <p class="comp-industry-p">Technology • Mountain View, CA</p>
+                <div class="comp-info-row">150,000+ employees • 14 UIU Alumni</div>
+                <a href="#browse-jobs" class="btn-view-profile">View 6 Openings</a>
+              </div>
+
+              <div class="landing-company-card">
+                <div class="comp-logo-circle" style="background: #00A4EF;">M</div>
+                <h3 class="comp-name-h4">Microsoft</h3>
+                <p class="comp-industry-p">Software & Cloud • Redmond, WA</p>
+                <div class="comp-info-row">220,000+ employees • 8 UIU Alumni</div>
+                <a href="#browse-jobs" class="btn-view-profile">View 4 Openings</a>
+              </div>
+
+              <div class="landing-company-card">
+                <div class="comp-logo-circle" style="background: #FF9900;">A</div>
+                <h3 class="comp-name-h4">Amazon</h3>
+                <p class="comp-industry-p">E-Commerce & Cloud • Seattle, WA</p>
+                <div class="comp-info-row">1.5M+ employees • 12 UIU Alumni</div>
+                <a href="#browse-jobs" class="btn-view-profile">View 8 Openings</a>
+              </div>
+
+              <div class="landing-company-card">
+                <div class="comp-logo-circle" style="background: #1428A0;">S</div>
+                <h3 class="comp-name-h4">Samsung R&D</h3>
+                <p class="comp-industry-p">Electronics • Seoul, South Korea</p>
+                <div class="comp-info-row">267,000+ employees • 22 UIU Alumni</div>
+                <a href="#browse-jobs" class="btn-view-profile">View 10 Openings</a>
+              </div>
+
+              <div class="landing-company-card">
+                <div class="comp-logo-circle" style="background: #008080;">GP</div>
+                <h3 class="comp-name-h4">Grameenphone</h3>
+                <p class="comp-industry-p">Telecommunications • Dhaka</p>
+                <div class="comp-info-row">4,500+ employees • 35 UIU Alumni</div>
+                <a href="#browse-jobs" class="btn-view-profile">View 15 Openings</a>
+              </div>
+
+              <div class="landing-company-card">
+                <div class="comp-logo-circle" style="background: #0F5132;">BR</div>
+                <h3 class="comp-name-h4">BRAC IT</h3>
+                <p class="comp-industry-p">IT Services • Dhaka</p>
+                <div class="comp-info-row">1,200+ employees • 28 UIU Alumni</div>
+                <a href="#browse-jobs" class="btn-view-profile">View 9 Openings</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 7: MESSAGES / CHAT (Page 9) -->
+          <section id="messages" class="student-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Messages & Interviews</h1>
+                <p class="page-subheading">Communicate directly with company HR recruiters.</p>
+              </div>
+            </div>
+
+            <div class="chat-app-container">
+              <!-- Left Chat List (Page 9) -->
+              <div class="chat-contacts-panel">
+                <div class="chat-contacts-header">Chats</div>
+                <div class="chat-threads-list">
+                  <div class="chat-thread-item active">
+                    <div class="chat-avatar-sq" style="background: #FFEDD5; color: #C2410C;">ABC</div>
+                    <div class="chat-preview-text">
+                      <div class="chat-preview-title">
+                        <span>ABC Technologies</span>
+                        <span style="font-size: 0.75rem; color: var(--text-light); font-weight: normal;">10:30 AM</span>
+                      </div>
+                      <div class="chat-preview-snippet">You: That works for me...</div>
+                    </div>
+                  </div>
+
+                  <div class="chat-thread-item">
+                    <div class="chat-avatar-sq">XYZ</div>
+                    <div class="chat-preview-text">
+                      <div class="chat-preview-title">
+                        <span>XYZ Limited</span>
+                        <span style="font-size: 0.75rem; color: var(--text-light); font-weight: normal;">10:30 AM</span>
+                      </div>
+                      <div class="chat-preview-snippet">XYZ: Thank you for your application.</div>
+                    </div>
+                  </div>
+
+                  <div class="chat-thread-item">
+                    <div class="chat-avatar-sq">TS</div>
+                    <div class="chat-preview-text">
+                      <div class="chat-preview-title">
+                        <span>Tech Solutions</span>
+                        <span style="font-size: 0.75rem; color: var(--text-light); font-weight: normal;">10:30 AM</span>
+                      </div>
+                      <div class="chat-preview-snippet">You: Please share your availability...</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Chat Window (Page 9) -->
+              <div class="chat-active-window">
+                <div class="chat-active-header">
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <div class="chat-avatar-sq" style="background: #FFEDD5; color: #C2410C;">ABC</div>
+                    <div>
+                      <h3 style="font-size: 1rem; font-weight: 800;">ABC Technologies</h3>
+                      <p style="font-size: 0.75rem; color: #059669; font-weight: 600;">● Online • Recruiting Team</p>
+                    </div>
+                  </div>
+                  <button class="btn-outline btn-sm">📅 Schedule Interview</button>
+                </div>
+
+                <div class="chat-messages-scroll">
+                  <div class="chat-bubble chat-bubble-received">
+                    Hi! Do you have a few minutes to chat about the Software Engineering Intern role you applied for?
+                    <div class="chat-timestamp">10:30 AM</div>
+                  </div>
+
+                  <div class="chat-bubble chat-bubble-sent">
+                    Hi! Yes, I do. Thanks for reaching out.
+                    <div class="chat-timestamp">10:30 AM</div>
+                  </div>
+
+                  <div class="chat-bubble chat-bubble-received">
+                    Great! We would love to set up an interview with the hiring manager.
+                    <div class="chat-timestamp">10:30 AM</div>
+                  </div>
+
+                  <div class="chat-bubble chat-bubble-sent">
+                    That is wonderful news. I am very interested.
+                    <div class="chat-timestamp">10:30 AM</div>
+                  </div>
+
+                  <div class="chat-bubble chat-bubble-received">
+                    Awesome. Are you free this week on Tuesday at 10:00 AM or Thursday at 2:00 PM?
+                    <div class="chat-timestamp">10:30 AM</div>
+                  </div>
+
+                  <div class="chat-bubble chat-bubble-sent">
+                    Thursday at 2:00 PM works perfectly for me.
+                    <div class="chat-timestamp">10:30 AM</div>
+                  </div>
+
+                  <div class="chat-bubble chat-bubble-received">
+                    I just sent a calendar invite with the video call link.
+                    <div class="chat-timestamp">10:30 AM</div>
+                  </div>
+                </div>
+
+                <form class="chat-input-bar" action="#messages">
+                  <input type="text" placeholder="Type a message..." required />
+                  <button type="submit" class="btn-primary btn-sm">Send</button>
+                </form>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 8: PLACEMENT STATISTICS (Page 11) -->
+          <section id="stats" class="student-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Placement Statistics & Reports</h1>
+                <p class="page-subheading">Graduate employment data and analytics: Academic Year 2024</p>
+              </div>
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <select class="form-control" style="width: 140px; padding: 6px 12px;">
+                  <option>Year 2024</option>
+                  <option>Year 2023</option>
+                  <option>Year 2022</option>
+                </select>
+                <select class="form-control" style="width: 140px; padding: 6px 12px;">
+                  <option>Dept: CSE</option>
+                  <option>Dept: EEE</option>
+                  <option>Dept: BBA</option>
+                </select>
+                <a href="#export-resume-modal" class="btn-primary btn-sm">📥 Download PDF Report</a>
+              </div>
+            </div>
+
+            <!-- Stats Row (Page 11) -->
+            <div class="metrics-grid-4">
+              <div class="metric-stat-card">
+                <div class="stat-content-box">
+                  <div class="stat-label-text">Overall Placement Rate</div>
+                  <div class="stat-huge-number">87% <span class="stat-growth-tag growth-positive">+6% vs 2023</span></div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">CSE Dept • Year 2024</div>
+                </div>
+              </div>
+
+              <div class="metric-stat-card">
+                <div class="stat-content-box">
+                  <div class="stat-label-text">Total Students Placed</div>
+                  <div class="stat-huge-number">481 <span class="stat-growth-tag growth-positive">+63 students</span></div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Out of 553 graduates</div>
+                </div>
+              </div>
+
+              <div class="metric-stat-card">
+                <div class="stat-content-box">
+                  <div class="stat-label-text">Avg. Starting Salary</div>
+                  <div class="stat-huge-number">৳39k <span class="stat-growth-tag growth-positive">+11% YoY</span></div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Monthly median package</div>
+                </div>
+              </div>
+
+              <div class="metric-stat-card">
+                <div class="stat-content-box">
+                  <div class="stat-label-text">Recruiting Companies</div>
+                  <div class="stat-huge-number">128 <span class="stat-growth-tag growth-positive">+21 new</span></div>
+                  <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">Active recruiters in 2024</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Charts (Page 11) -->
+            <div class="form-grid-3">
+              <!-- Placement Trend -->
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 12px;">Placement Rate Trend (2019 - 2024)</h3>
+                <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 16px;">Year-over-year placement percentage across all departments.</p>
+                <div class="chart-bars-container">
+                  <div class="bar-column-item"><div class="bar-fill-orange" style="height: 55%;"></div><span class="bar-column-label">2019<br />55%</span></div>
+                  <div class="bar-column-item"><div class="bar-fill-orange" style="height: 62%;"></div><span class="bar-column-label">2020<br />62%</span></div>
+                  <div class="bar-column-item"><div class="bar-fill-orange" style="height: 70%;"></div><span class="bar-column-label">2021<br />70%</span></div>
+                  <div class="bar-column-item"><div class="bar-fill-orange" style="height: 78%;"></div><span class="bar-column-label">2022<br />78%</span></div>
+                  <div class="bar-column-item"><div class="bar-fill-orange" style="height: 81%;"></div><span class="bar-column-label">2023<br />81%</span></div>
+                  <div class="bar-column-item"><div class="bar-fill-orange" style="height: 87%;"></div><span class="bar-column-label">2024<br /><strong>87%</strong></span></div>
+                </div>
+              </div>
+
+              <!-- Dept Wise Placement -->
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 12px;">Department-wise Placement %</h3>
+                <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 16px;">Placement rate by department 2024.</p>
+                <div class="horizontal-bar-progress">
+                  <div class="hbar-label-row"><span>CSE</span><span>94%</span></div>
+                  <div class="hbar-track"><div class="hbar-fill" style="width: 94%;"></div></div>
+                </div>
+                <div class="horizontal-bar-progress">
+                  <div class="hbar-label-row"><span>EEE</span><span>78%</span></div>
+                  <div class="hbar-track"><div class="hbar-fill" style="width: 78%; background:#0284C7;"></div></div>
+                </div>
+                <div class="horizontal-bar-progress">
+                  <div class="hbar-label-row"><span>BBA</span><span>86%</span></div>
+                  <div class="hbar-track"><div class="hbar-fill" style="width: 86%; background:#059669;"></div></div>
+                </div>
+                <div class="horizontal-bar-progress">
+                  <div class="hbar-label-row"><span>Civil / Others</span><span>71%</span></div>
+                  <div class="hbar-track"><div class="hbar-fill" style="width: 71%; background:#7C3AED;"></div></div>
+                </div>
+              </div>
+
+              <!-- Industry Sector Breakdown -->
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 12px;">Industry Sector Breakdown</h3>
+                <p style="font-size: 0.8125rem; color: var(--text-muted); margin-bottom: 16px;">Where 2024 UIU graduates are employed.</p>
+                <div style="display: flex; align-items: center; justify-content: space-around;">
+                  <svg class="donut-chart-svg" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="40" class="donut-circle-bg"></circle>
+                    <circle cx="50" cy="50" r="40" class="donut-circle-val1"></circle>
+                    <circle cx="50" cy="50" r="40" class="donut-circle-val2"></circle>
+                  </svg>
+                  <div style="font-size: 0.8125rem; line-height: 1.8;">
+                    <div><span style="color:var(--primary);">■</span> Software & IT: <strong>39%</strong></div>
+                    <div><span style="color:#0284C7;">■</span> Banking & Finance: <strong>21%</strong></div>
+                    <div><span style="color:#059669;">■</span> Telecom: <strong>15%</strong></div>
+                    <div><span style="color:#7C3AED;">■</span> Manufacturing: <strong>13%</strong></div>
+                    <div><span style="color:#64748B;">■</span> Others: <strong>12%</strong></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 9: MY PROFILE (Page 12) -->
+          <section id="profile" class="student-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">My Profile</h1>
+                <p class="page-subheading">Manage your academic credentials, skills, and portfolio.</p>
+              </div>
+              <button class="btn-primary">✏️ Edit Profile</button>
+            </div>
+
+            <!-- Profile Header Card (Page 12) -->
+            <div class="portal-card">
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                <div style="display: flex; gap: 20px;">
+                  <div class="user-avatar-circle" style="width: 80px; height: 80px; font-size: 2.2rem;">M</div>
+                  <div>
+                    <h2 style="font-size: 1.5rem; font-weight: 800; color: #0F172A;">Mugdha</h2>
+                    <p style="color: var(--text-muted); font-size: 0.875rem; margin-bottom: 8px;">Computer Science and Engineering (CSE)<br />United International University</p>
+                    <div style="font-size: 0.8125rem; color: var(--text-body); line-height: 1.6;">
+                      <div>📧 mugdha.rahman@uiu.edu.bd</div>
+                      <div>📞 +880 1712 345678</div>
+                      <div>📍 Dhaka, Bangladesh • ID: 2022110123</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="background: #FAF8F5; padding: 16px; border-radius: var(--radius-md); font-size: 0.875rem; line-height: 1.8;">
+                  <div style="display: flex; justify-content: space-between;"><span>CGPA:</span> <strong>3.75 out of 4.00</strong></div>
+                  <div style="display: flex; justify-content: space-between;"><span>Batch:</span> <strong>49th Batch</strong></div>
+                  <div style="display: flex; justify-content: space-between;"><span>Level:</span> <strong>Undergraduate</strong></div>
+                  <div style="display: flex; justify-content: space-between;"><span>Expected Graduation:</span> <strong>Spring 2027</strong></div>
+                  <div style="display: flex; justify-content: space-between;"><span>Availability:</span> <strong style="color: #059669;">Available for Internship</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <!-- Skills & Resume (Page 12) -->
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 16px;">Skills</h3>
+                <div class="skills-tags-container" style="margin-bottom: 24px;">
+                  <span class="skill-tag-badge">C++</span>
+                  <span class="skill-tag-badge">Java</span>
+                  <span class="skill-tag-badge">Python</span>
+                  <span class="skill-tag-badge">Data Structures</span>
+                  <span class="skill-tag-badge">MySQL</span>
+                  <span class="skill-tag-badge">SQL</span>
+                  <span class="skill-tag-badge">HTML</span>
+                  <span class="skill-tag-badge">CSS</span>
+                  <span class="skill-tag-badge">JavaScript</span>
+                  <span class="skill-tag-badge">React.js</span>
+                  <span class="skill-tag-badge">Git</span>
+                  <span class="skill-tag-badge">GitHub</span>
+                  <span class="skill-tag-badge">Problem Solving</span>
+                  <span class="skill-tag-badge">OOP</span>
+                </div>
+
+                <h3 class="card-title-h3" style="margin-bottom: 16px;">Resume</h3>
+                <div style="display: flex; align-items: center; justify-content: space-between; background: #FAF8F5; padding: 14px; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 16px;">
+                  <div>
+                    <strong>Mugdha_Rahman_Resume.pdf</strong>
+                    <div style="font-size: 0.75rem; color: var(--text-muted);">Uploaded on 10 May 2026 • 245 KB</div>
+                  </div>
+                  <div style="display: flex; gap: 8px;">
+                    <a href="#export-resume-modal" class="btn-outline btn-sm">📥 Download</a>
+                    <button class="btn-outline btn-sm" style="color: #DC2626;">🗑️</button>
+                  </div>
+                </div>
+                <button class="btn-primary btn-sm" style="width: 100%; justify-content: center;">📤 Upload New Resume</button>
+              </div>
+
+              <!-- Education & Projects (Page 12) -->
+              <div class="portal-card">
+                <h3 class="card-title-h3" style="margin-bottom: 16px;">Education</h3>
+                <div style="border-left: 3px solid var(--primary); padding-left: 12px; margin-bottom: 20px;">
+                  <h4 style="font-size: 0.9375rem; font-weight: 800;">United International University (UIU)</h4>
+                  <div style="font-size: 0.8125rem; color: var(--text-muted);">B.Sc. in Computer Science and Engineering (CSE)</div>
+                  <div style="font-size: 0.8125rem; color: var(--text-body);">Fall 2022 – Spring 2027 (Expected) • CGPA: <strong>3.75 / 4.00</strong></div>
+                </div>
+
+                <h3 class="card-title-h3" style="margin-bottom: 16px;">Projects</h3>
+                <div style="background: #FAF8F5; padding: 12px; border-radius: var(--radius-md); margin-bottom: 12px;">
+                  <h4 style="font-size: 0.875rem; font-weight: 800;">Portfolio Website</h4>
+                  <p style="font-size: 0.8125rem; color: var(--text-body);">Personal portfolio website built using HTML, CSS, JavaScript and React.js.</p>
+                </div>
+                <div style="background: #FAF8F5; padding: 12px; border-radius: var(--radius-md);">
+                  <h4 style="font-size: 0.875rem; font-weight: 800;">Student Management System</h4>
+                  <p style="font-size: 0.8125rem; color: var(--text-body);">A desktop application in Java to manage student records using MySQL database.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCREEN 10: SETTINGS -->
+          <section id="settings" class="student-view-pane">
+            <div class="page-title-row">
+              <div>
+                <h1 class="page-main-heading">Account Settings</h1>
+                <p class="page-subheading">Manage your notification preferences and password.</p>
+              </div>
+            </div>
+
+            <div class="portal-card" style="max-width: 600px;">
+              <h3 class="card-title-h3" style="margin-bottom: 16px;">Notification Preferences</h3>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                <div>
+                  <strong>Email alerts for new job postings</strong>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">Receive daily digests matching your CSE skills.</div>
+                </div>
+                <label class="switch-toggle"><input type="checkbox" checked /><span class="switch-slider"></span></label>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                <div>
+                  <strong>Interview reminders (24h before)</strong>
+                  <div style="font-size: 0.75rem; color: var(--text-muted);">SMS and email alerts for confirmed recruiter calls.</div>
+                </div>
+                <label class="switch-toggle"><input type="checkbox" checked /><span class="switch-slider"></span></label>
+              </div>
+
+              <h3 class="card-title-h3" style="margin-bottom: 16px;">Security</h3>
+              <div class="form-group">
+                <label class="form-label">Current Password</label>
+                <input type="password" class="form-control" value="••••••••••••" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">New Password</label>
+                <input type="password" class="form-control" placeholder="Enter new password" />
+              </div>
+              <button class="btn-primary">Update Password</button>
+            </div>
+          </section>
+
+        </div>
+      </main>
+    </div>
+
+    <!-- Modals for Student Portal -->
+    <div id="apply-success-modal" class="modal-overlay">
+      <div class="modal-dialog-box" style="text-align: center;">
+        <a href="#my-applications" class="modal-close-btn">✕</a>
+        <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
+        <h3 style="font-size: 1.35rem; font-weight: 800; color: #0F172A; margin-bottom: 8px;">Application Submitted!</h3>
+        <p style="color: #64748B; font-size: 0.875rem; margin-bottom: 20px;">Your resume and portfolio have been submitted to <strong>ABC Technologies</strong> for Software Engineering Intern. You can track this in "My Applications".</p>
+        <div style="display: flex; gap: 12px; justify-content: center;">
+          <a href="#my-applications" class="btn-primary">View in My Applications</a>
+          <a href="#browse-jobs" class="btn-outline">Browse More Jobs</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="saved-confirm" class="modal-overlay">
+      <div class="modal-dialog-box" style="text-align: center;">
+        <a href="#" class="modal-close-btn">✕</a>
+        <div style="font-size: 2.5rem; margin-bottom: 10px;">🔖</div>
+        <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 8px;">Job Saved to Bookmarks</h3>
+        <p style="color: #64748B; font-size: 0.875rem; margin-bottom: 16px;">You can view and apply to this job whenever you are ready.</p>
+        <a href="#" class="btn-primary">Okay</a>
+      </div>
+    </div>
+
+    <div id="export-resume-modal" class="modal-overlay">
+      <div class="modal-dialog-box" style="text-align: center;">
+        <a href="#" class="modal-close-btn">✕</a>
+        <div style="font-size: 2.5rem; margin-bottom: 10px;">📄</div>
+        <h3 style="font-size: 1.25rem; font-weight: 800; margin-bottom: 8px;">Resume PDF Generated</h3>
+        <p style="color: #64748B; font-size: 0.875rem; margin-bottom: 20px;">Your ATS-optimized Classic Academic Resume is ready for download.</p>
+        <a href="#" class="btn-primary">📥 Download File (PDF)</a>
+      </div>
+    </div>
+
+    <!-- Student Notifications Modal -->
+    <div id="notifications-modal" class="modal-overlay">
+      <div class="modal-dialog-box" style="max-width: 540px;">
+        <a href="#" class="modal-close-btn">✕</a>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+          <h3 style="font-size: 1.25rem; font-weight: 800;">🔔 Notifications (3 Unread)</h3>
+          <a href="#" style="font-size: 0.75rem; color: var(--primary); font-weight: 600; text-decoration: none;">Mark all as read</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; max-height: 55vh; overflow-y: auto;">
+          <div style="background: var(--bg-muted); padding: 12px; border-radius: var(--radius-md); border-left: 3px solid var(--primary);">
+            <strong style="font-size: 0.875rem; color: var(--text-heading); display: block;">Technical Interview Scheduled with ABC Technologies</strong>
+            <p style="font-size: 0.8125rem; color: var(--text-body); margin: 4px 0;">Recruiter invited you to Technical Round for Software Engineering Intern.</p>
+            <span style="font-size: 0.7rem; color: var(--text-muted);">20 mins ago • Google Meet Link attached</span>
+          </div>
+          <div style="background: var(--bg-muted); padding: 12px; border-radius: var(--radius-md); border-left: 3px solid #059669;">
+            <strong style="font-size: 0.875rem; color: var(--text-heading); display: block;">Offer Letter Released from Brain Station 23</strong>
+            <p style="font-size: 0.8125rem; color: var(--text-body); margin: 4px 0;">Congratulations! You have been selected for Junior Frontend Trainee.</p>
+            <span style="font-size: 0.7rem; color: var(--text-muted);">3 hours ago • Valid until Sep 08, 2026</span>
+          </div>
+          <div style="background: var(--bg-muted); padding: 12px; border-radius: var(--radius-md); border-left: 3px solid #6366F1;">
+            <strong style="font-size: 0.875rem; color: var(--text-heading); display: block;">Samsung R&D On-Campus Written Test</strong>
+            <p style="font-size: 0.8125rem; color: var(--text-body); margin: 4px 0;">Reporting time is 09:30 AM at UIU Auditorium.</p>
+            <span style="font-size: 0.7rem; color: var(--text-muted);">Yesterday • CCSA Placement Cell</span>
+          </div>
+        </div>
+        <div style="margin-top: 18px; text-align: right;">
+          <a href="#" class="btn-primary btn-sm">Close</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         QUICK APPLY MODAL — reusable, JS-driven job application form.
+         openApplyModal(title, company) fills this in dynamically, so a single
+         form serves every job card on the page instead of one form per job.
+         ========================================================================== -->
+    <div id="quick-apply-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="quick-apply-title">
+      <div class="modal-dialog-box apply-modal-box">
+        <button type="button" class="modal-close-btn" onclick="closeApplyModal()" aria-label="Close application form">✕</button>
+
+        <!-- Form view -->
+        <div id="apply-form-view">
+          <span class="skill-tag-badge" style="background: var(--primary-light); color: var(--primary-dark); font-weight: 700; margin-bottom: 8px; display: inline-block;">JOB APPLICATION</span>
+          <h2 class="text-h2" id="quick-apply-title" style="font-size: 1.4rem; margin-bottom: 2px;">Complete Your Application</h2>
+          <div class="apply-modal-jobline" id="apply-modal-jobline-text">Applying for <strong>—</strong></div>
+
+          <form id="quick-apply-form" novalidate>
+            <div class="form-section-heading">Personal Information</div>
+            <div class="form-grid-2">
+              <div class="form-group" id="qa-fullname-group">
+                <label class="form-label" for="qa-fullname">Full Name <span style="color: var(--color-danger);">*</span></label>
+                <input type="text" id="qa-fullname" class="form-control" value="Mahfuzur Rahman" required />
+                <div class="field-error-msg" id="qa-fullname-error">This field is required.</div>
+              </div>
+              <div class="form-group" id="qa-studentid-group">
+                <label class="form-label" for="qa-studentid">Student ID <span style="color: var(--color-danger);">*</span></label>
+                <input type="text" id="qa-studentid" class="form-control" value="011 211 045" required />
+                <div class="field-error-msg" id="qa-studentid-error">This field is required.</div>
+              </div>
+            </div>
+            <div class="form-grid-2">
+              <div class="form-group" id="qa-email-group">
+                <label class="form-label" for="qa-email">University Email <span style="color: var(--color-danger);">*</span></label>
+                <input type="email" id="qa-email" class="form-control" value="mrahman211045@bscse.uiu.ac.bd" required />
+                <div class="field-error-msg" id="qa-email-error">Enter a valid email address.</div>
+              </div>
+              <div class="form-group" id="qa-phone-group">
+                <label class="form-label" for="qa-phone">Phone Number <span style="color: var(--color-danger);">*</span></label>
+                <input type="tel" id="qa-phone" class="form-control" value="+880 1712-345678" required />
+                <div class="field-error-msg" id="qa-phone-error">Enter a valid phone number.</div>
+              </div>
+            </div>
+            <div class="form-grid-3">
+              <div class="form-group" id="qa-department-group">
+                <label class="form-label" for="qa-department">Department <span style="color: var(--color-danger);">*</span></label>
+                <select id="qa-department" class="form-control" required>
+                  <option value="">Select Department</option>
+                  <option value="CSE" selected>CSE</option>
+                  <option value="EEE">EEE</option>
+                  <option value="BBA">BBA</option>
+                  <option value="Civil">Civil Engineering</option>
+                  <option value="Economics">Economics</option>
+                  <option value="Data Science">Data Science</option>
+                </select>
+                <div class="field-error-msg" id="qa-department-error">Please select your department.</div>
+              </div>
+              <div class="form-group" id="qa-program-group">
+                <label class="form-label" for="qa-program">Program / Major <span style="color: var(--color-danger);">*</span></label>
+                <input type="text" id="qa-program" class="form-control" value="B.Sc. in Computer Science & Engineering" required />
+                <div class="field-error-msg" id="qa-program-error">This field is required.</div>
+              </div>
+              <div class="form-group" id="qa-gradyear-group">
+                <label class="form-label" for="qa-gradyear">Graduation Year <span style="color: var(--color-danger);">*</span></label>
+                <input type="number" id="qa-gradyear" class="form-control" value="2026" min="2024" max="2032" required />
+                <div class="field-error-msg" id="qa-gradyear-error">This field is required.</div>
+              </div>
+            </div>
+
+            <div class="form-section-heading">Application Details</div>
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="qa-position">Position</label>
+                <input type="text" id="qa-position" class="form-control" readonly style="background: var(--bg-muted); font-weight: 700;" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="qa-company">Company / Organization</label>
+                <input type="text" id="qa-company" class="form-control" readonly style="background: var(--bg-muted); font-weight: 700;" />
+              </div>
+            </div>
+            <div class="form-group" id="qa-coverletter-group">
+              <label class="form-label" for="qa-coverletter">Cover Letter / Short Message <span style="color: var(--color-danger);">*</span></label>
+              <textarea id="qa-coverletter" class="form-control" style="min-height: 100px;" placeholder="Tell the employer why you're a strong fit for this role..." required>I am excited to apply for this role and believe my academic background and hands-on project experience make me a strong fit for your team.</textarea>
+              <div class="field-error-msg" id="qa-coverletter-error">This field is required.</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="qa-skills">Relevant Skills</label>
+              <input type="text" id="qa-skills" class="form-control" placeholder="e.g. React, Node.js, SQL, Git" />
+            </div>
+
+            <div class="form-section-heading">CV Upload</div>
+            <div class="form-group" id="qa-cv-group" style="margin-bottom: 8px;">
+              <div class="doc-upload-dropzone compact" id="cv-dropzone">
+                <div style="font-size: 2rem; margin-bottom: 6px;">📂</div>
+                <strong style="font-size: 0.9375rem; color: var(--text-heading); display: block; margin-bottom: 4px;">
+                  Drag & drop your CV here, or <span style="color: var(--primary); text-decoration: underline;">click to browse</span>
+                </strong>
+                <p style="font-size: 0.75rem; color: var(--text-muted);">Accepted formats: PDF, DOC, DOCX (Max 10 MB)</p>
+                <input type="file" id="cv-file-input" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" style="display: none;" />
+              </div>
+              <div class="uploaded-doc-item cv-file-selected" id="cv-file-selected" style="margin-top: 12px; margin-bottom: 0;">
+                <div class="uploaded-doc-info">
+                  <div style="font-size: 1.5rem; background: #FFF7ED; padding: 6px 10px; border-radius: var(--radius-sm);">📄</div>
+                  <strong style="font-size: 0.875rem; color: var(--text-heading);" id="cv-file-name">—</strong>
+                </div>
+                <div class="uploaded-doc-actions">
+                  <button type="button" class="btn-outline btn-sm" style="color: var(--color-danger); border-color: #FECACA;" onclick="removeCvFile()">🗑️ Remove</button>
+                </div>
+              </div>
+              <div class="field-error-msg" id="qa-cv-error">Please attach your CV to continue.</div>
+            </div>
+
+            <div class="step-footer-actions">
+              <button type="button" class="btn-outline" onclick="closeApplyModal()">Cancel</button>
+              <button type="submit" class="btn-primary" style="font-weight: 700; padding: 11px 24px;">Submit Application</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Success view -->
+        <div id="apply-success-view" class="apply-success-view" style="display: none;">
+          <div style="font-size: 3rem; margin-bottom: 12px;">🎉</div>
+          <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--text-heading); margin-bottom: 8px;">Application Submitted Successfully</h3>
+          <p style="font-size: 0.9375rem; color: var(--text-body); line-height: 1.6; margin-bottom: 24px;" id="apply-success-text">
+            Your application has been received.
+          </p>
+          <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+            <a href="#my-applications" class="btn-primary" onclick="closeApplyModal()">View My Applications</a>
+            <button type="button" class="btn-outline" onclick="closeApplyModal()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var modal = document.getElementById('quick-apply-modal');
+        var form = document.getElementById('quick-apply-form');
+        var formView = document.getElementById('apply-form-view');
+        var successView = document.getElementById('apply-success-view');
+        var jobTitleField = document.getElementById('qa-position');
+        var companyField = document.getElementById('qa-company');
+        var jobLineText = document.getElementById('apply-modal-jobline-text');
+        var successText = document.getElementById('apply-success-text');
+        var dropzone = document.getElementById('cv-dropzone');
+        var fileInput = document.getElementById('cv-file-input');
+        var fileSelectedBox = document.getElementById('cv-file-selected');
+        var fileNameLabel = document.getElementById('cv-file-name');
+        var selectedFile = null;
+
+        var REQUIRED_FIELDS = ['fullname', 'studentid', 'email', 'phone', 'department', 'program', 'gradyear', 'coverletter'];
+
+        // Opens the shared modal for a specific job — called from each "Apply Now" button.
+        window.openApplyModal = function (title, company) {
+          jobTitleField.value = title;
+          companyField.value = company;
+          jobLineText.innerHTML = 'Applying for <strong>' + title + '</strong> at <strong>' + company + '</strong>';
+          formView.style.display = 'block';
+          successView.style.display = 'none';
+          modal.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        };
+
+        window.closeApplyModal = function () {
+          modal.style.display = 'none';
+          document.body.style.overflow = '';
+          resetForm();
+        };
+
+        function resetForm() {
+          form.reset();
+          selectedFile = null;
+          fileInput.value = '';
+          fileSelectedBox.classList.remove('show');
+          REQUIRED_FIELDS.concat(['cv']).forEach(clearFieldError);
+        }
+
+        modal.addEventListener('click', function (e) {
+          if (e.target === modal) closeApplyModal();
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && modal.style.display === 'flex') closeApplyModal();
+        });
+
+        // Drag & drop CV upload
+        ['dragenter', 'dragover'].forEach(function (evt) {
+          dropzone.addEventListener(evt, function (e) {
+            e.preventDefault();
+            dropzone.classList.add('drag-active');
+          });
+        });
+        ['dragleave', 'drop'].forEach(function (evt) {
+          dropzone.addEventListener(evt, function (e) {
+            e.preventDefault();
+            dropzone.classList.remove('drag-active');
+          });
+        });
+        dropzone.addEventListener('drop', function (e) {
+          if (e.dataTransfer.files && e.dataTransfer.files.length) {
+            handleFile(e.dataTransfer.files[0]);
+          }
+        });
+        dropzone.addEventListener('click', function () {
+          fileInput.click();
+        });
+        fileInput.addEventListener('change', function () {
+          if (fileInput.files.length) handleFile(fileInput.files[0]);
+        });
+
+        function handleFile(file) {
+          var okExt = /\.(pdf|doc|docx)$/i.test(file.name);
+          if (!okExt) {
+            showFieldError('cv', 'Only PDF, DOC, or DOCX files are accepted.');
+            return;
+          }
+          if (file.size > 10 * 1024 * 1024) {
+            showFieldError('cv', 'File is too large — max 10 MB.');
+            return;
+          }
+          selectedFile = file;
+          fileNameLabel.textContent = file.name;
+          fileSelectedBox.classList.add('show');
+          clearFieldError('cv');
+        }
+
+        window.removeCvFile = function () {
+          selectedFile = null;
+          fileInput.value = '';
+          fileSelectedBox.classList.remove('show');
+        };
+
+        function showFieldError(key, msg) {
+          var group = document.getElementById('qa-' + key + '-group');
+          var errEl = document.getElementById('qa-' + key + '-error');
+          var control = document.getElementById('qa-' + key);
+          if (group) group.classList.add('has-error');
+          if (errEl && msg) errEl.textContent = msg;
+          if (control) control.classList.add('input-error');
+        }
+
+        function clearFieldError(key) {
+          var group = document.getElementById('qa-' + key + '-group');
+          var control = document.getElementById('qa-' + key);
+          if (group) group.classList.remove('has-error');
+          if (control) control.classList.remove('input-error');
+        }
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var valid = true;
+
+          REQUIRED_FIELDS.forEach(function (key) {
+            var el = document.getElementById('qa-' + key);
+            if (!el.value.trim()) {
+              showFieldError(key);
+              valid = false;
+            } else {
+              clearFieldError(key);
+            }
+          });
+
+          var emailEl = document.getElementById('qa-email');
+          if (emailEl.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value.trim())) {
+            showFieldError('email', 'Enter a valid email address.');
+            valid = false;
+          }
+
+          var phoneEl = document.getElementById('qa-phone');
+          if (phoneEl.value.trim() && !/^[+]?[\d\s-]{7,15}$/.test(phoneEl.value.trim())) {
+            showFieldError('phone', 'Enter a valid phone number.');
+            valid = false;
+          }
+
+          if (!selectedFile) {
+            showFieldError('cv', 'Please attach your CV to continue.');
+            valid = false;
+          }
+
+          if (!valid) {
+            var firstError = form.querySelector('.has-error, #qa-cv-group.has-error');
+            if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+          }
+
+          successText.innerHTML = 'Your application for <strong>' + jobTitleField.value + '</strong> at <strong>' +
+            companyField.value + '</strong> has been received. UIU Career Services and the employer will review your profile and reach out via your registered email.';
+          formView.style.display = 'none';
+          successView.style.display = 'block';
+        });
+      })();
+    </script>
+  </body>
+</html>
